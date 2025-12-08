@@ -1,0 +1,99 @@
+import { useState, useEffect } from 'react';
+import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const navLinks = [
+  { label: 'Leistungen', href: '#leistungen' },
+  { label: 'Preise', href: '#preise' },
+  { label: 'Vorher–Nachher', href: '#vorher-nachher' },
+  { label: 'Bewertungen', href: '#bewertungen' },
+  { label: 'Einsatzgebiet', href: '#einsatzgebiet' },
+];
+
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-background/95 backdrop-blur-md shadow-soft border-b border-border/50'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto flex items-center justify-between py-4">
+        <a href="#" className="text-xl font-bold text-foreground">
+          Polster<span className="text-primary">Frisch</span>
+        </a>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a href="tel:+4917612345678" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+            <Phone className="w-4 h-4" />
+            <span>0176 123 456 78</span>
+          </a>
+          <Button variant="hero" size="sm" asChild>
+            <a href="#kontakt">Termin buchen</a>
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-foreground"
+          aria-label="Menü öffnen"
+        >
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-background/98 backdrop-blur-lg border-t border-border animate-fade-in">
+          <nav className="container mx-auto py-6 flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-base font-medium text-foreground hover:text-primary transition-colors py-2"
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-4 border-t border-border flex flex-col gap-3">
+              <a href="tel:+4917612345678" className="flex items-center gap-2 text-foreground">
+                <Phone className="w-5 h-5 text-primary" />
+                <span>0176 123 456 78</span>
+              </a>
+              <Button variant="hero" className="w-full" asChild>
+                <a href="#kontakt">Termin buchen</a>
+              </Button>
+            </div>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
