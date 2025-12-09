@@ -38,11 +38,30 @@ const quickLinks = [
   { label: 'Teppiche', target: '#teppiche' },
 ];
 
-export function PricingSection() {
+interface PricingSectionProps {
+  onProductSelect?: (product: string) => void;
+}
+
+export function PricingSection({ onProductSelect }: PricingSectionProps) {
   const scrollToSection = (target: string) => {
     const element = document.querySelector(target);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleProductClick = (title: string, price: string) => {
+    const productText = `${title} – ${price}`;
+    
+    // Call the callback to update the form
+    if (onProductSelect) {
+      onProductSelect(productText);
+    }
+    
+    // Scroll to contact form
+    const formElement = document.querySelector('#kontaktformular');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -56,7 +75,7 @@ export function PricingSection() {
             Transparente Preise
           </h2>
           <p className="text-lg text-muted-foreground">
-            Faire und transparente Preisgestaltung ohne versteckte Kosten.
+            Faire und transparente Preisgestaltung ohne versteckte Kosten. Klicken Sie auf ein Produkt, um eine Anfrage zu stellen.
           </p>
         </div>
 
@@ -85,9 +104,10 @@ export function PricingSection() {
               {/* Items Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {category.items.map((item) => (
-                  <div
+                  <button
                     key={item.id}
-                    className="bg-card rounded-2xl p-8 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 flex flex-col items-center text-center group"
+                    onClick={() => handleProductClick(item.title, item.price)}
+                    className="bg-card rounded-2xl p-8 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/40 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center group cursor-pointer"
                   >
                     {/* Icon */}
                     <div className="w-16 h-16 rounded-2xl bg-accent/50 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors duration-300">
@@ -103,7 +123,12 @@ export function PricingSection() {
                     <p className="text-xl font-bold text-primary">
                       {item.price}
                     </p>
-                  </div>
+
+                    {/* Hover hint */}
+                    <p className="text-xs text-muted-foreground mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Klicken zum Anfragen
+                    </p>
+                  </button>
                 ))}
               </div>
             </div>
