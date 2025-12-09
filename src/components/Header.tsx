@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import reinwerkLogo from '@/assets/reinwerk-logo.jpg';
 
 const navLinks = [
   { label: 'Leistungen', href: '#leistungen' },
@@ -31,8 +32,15 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4">
-        <a href="#" className="text-xl font-bold text-foreground">
-          Polster<span className="text-primary">Frisch</span>
+        <a href="#" className="flex items-center gap-3">
+          <img 
+            src={reinwerkLogo} 
+            alt="ReinWerk Logo" 
+            className="h-8 w-8 md:h-10 md:w-10 object-contain"
+          />
+          <span className="text-xl md:text-2xl font-bold text-foreground tracking-tight">
+            Rein<span className="text-primary">Werk</span>
+          </span>
         </a>
 
         {/* Desktop Navigation */}
