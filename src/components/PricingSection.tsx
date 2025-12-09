@@ -1,62 +1,130 @@
-import { Check } from 'lucide-react';
+import { Sofa, BedDouble, Armchair, Sparkles } from 'lucide-react';
 
-const prices = [
-  { item: 'Sofa 2-Sitzer', price: 'ab 69€' },
-  { item: 'Sofa 3-Sitzer', price: 'ab 89€' },
-  { item: 'Ecksofa', price: 'ab 109€' },
-  { item: 'Matratze pro Seite', price: 'ab 35€' },
-  { item: 'Sessel', price: 'ab 25€' },
+const categories = [
+  {
+    id: 'sofas',
+    title: 'Sofas',
+    icon: Sofa,
+    items: [
+      { item: 'Weicher Sessel', price: 'ab 40€' },
+      { item: '2-Sitzer Sofa', price: 'ab 90€' },
+      { item: '3-Sitzer Sofa', price: 'ab 110€' },
+      { item: 'Ecksofa', price: 'ab 130€' },
+      { item: 'Großes Ecksofa', price: 'ab 160€' },
+    ],
+  },
+  {
+    id: 'matratzen',
+    title: 'Matratzen',
+    icon: BedDouble,
+    items: [
+      { item: 'Matratze 90 cm', price: 'ab 60€' },
+      { item: 'Matratze 140 cm', price: 'ab 80€' },
+      { item: 'Matratze 180 cm', price: 'ab 100€' },
+    ],
+  },
+  {
+    id: 'stuehle',
+    title: 'Stühle',
+    icon: Armchair,
+    items: [
+      { item: 'Autositz', price: 'ab 20€' },
+      { item: 'Küchenstuhl', price: 'ab 10€' },
+      { item: 'Bürostuhl', price: 'ab 15€' },
+    ],
+  },
+  {
+    id: 'teppiche',
+    title: 'Teppiche & Teppichboden',
+    icon: Sparkles,
+    items: [
+      { item: 'Teppich', price: '10€/m²' },
+      { item: 'Teppichreinigung ab 10 m²', price: 'Preis nach Vereinbarung' },
+    ],
+  },
+];
+
+const quickLinks = [
+  { label: 'Sofas', target: '#sofas' },
+  { label: 'Matratzen', target: '#matratzen' },
+  { label: 'Stühle', target: '#stuehle' },
+  { label: 'Teppiche', target: '#teppiche' },
 ];
 
 export function PricingSection() {
+  const scrollToSection = (target: string) => {
+    const element = document.querySelector(target);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section id="preise" className="py-24 bg-secondary/50">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Preisliste</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Transparente Preise
           </h2>
           <p className="text-lg text-muted-foreground">
-            Faire und transparente Preisgestaltung ohne versteckte Kosten. 
-            Der Endpreis hängt vom Verschmutzungsgrad ab.
+            Faire und transparente Preisgestaltung ohne versteckte Kosten.
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-card rounded-3xl shadow-medium overflow-hidden">
-            <div className="p-8 md:p-10">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left pb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">Leistung</th>
-                    <th className="text-right pb-4 text-sm font-semibold text-muted-foreground uppercase tracking-wider">Preis</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {prices.map((row, index) => (
-                    <tr key={row.item} className={index !== prices.length - 1 ? 'border-b border-border/50' : ''}>
-                      <td className="py-5 text-foreground font-medium flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-accent flex items-center justify-center">
-                          <Check className="w-4 h-4 text-primary" />
-                        </span>
-                        {row.item}
-                      </td>
-                      <td className="py-5 text-right">
-                        <span className="text-xl font-bold text-primary">{row.price}</span>
-                      </td>
-                    </tr>
+        {/* Quick Navigation */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {quickLinks.map((link) => (
+            <button
+              key={link.target}
+              onClick={() => scrollToSection(link.target)}
+              className="px-6 py-3 bg-card border border-border rounded-full text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-sm"
+            >
+              {link.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Price Cards */}
+        <div className="max-w-4xl mx-auto space-y-8">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              id={category.id}
+              className="bg-card rounded-3xl shadow-medium overflow-hidden scroll-mt-32"
+            >
+              <div className="p-8 md:p-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
+                    <category.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
+                </div>
+                
+                <div className="space-y-4">
+                  {category.items.map((row, index) => (
+                    <div
+                      key={row.item}
+                      className={`flex items-center justify-between py-4 ${
+                        index !== category.items.length - 1 ? 'border-b border-border/50' : ''
+                      }`}
+                    >
+                      <span className="text-foreground font-medium">{row.item}</span>
+                      <span className="text-lg font-bold text-primary whitespace-nowrap ml-4">{row.price}</span>
+                    </div>
                   ))}
-                </tbody>
-              </table>
+                </div>
+              </div>
             </div>
-            
-            <div className="px-8 md:px-10 py-6 bg-accent/50 border-t border-border/50">
-              <p className="text-sm text-muted-foreground text-center">
-                <strong className="text-foreground">Hinweis:</strong> Endpreise hängen vom Verschmutzungsgrad ab. 
-                Wir erstellen Ihnen gerne ein individuelles Angebot.
-              </p>
-            </div>
+          ))}
+        </div>
+
+        {/* Note */}
+        <div className="max-w-4xl mx-auto mt-8">
+          <div className="px-8 md:px-10 py-6 bg-accent/50 rounded-2xl border border-border/50">
+            <p className="text-sm text-muted-foreground text-center">
+              <strong className="text-foreground">Hinweis:</strong> Endpreise können je nach Verschmutzungsgrad und Material variieren.
+            </p>
           </div>
         </div>
       </div>
