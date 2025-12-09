@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <a href="#" className="text-2xl font-bold text-foreground">
-              Polster<span className="text-primary">Frisch</span>
+              Rein<span className="text-primary">Werk</span>
             </a>
             <p className="mt-4 text-muted-foreground max-w-sm">
               Professionelle Polsterreinigung in Sachsen. Wir bringen Ihre Möbel zum Strahlen – 
@@ -48,9 +48,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@polsterfrisch.de" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
+                <a href="mailto:info@reinwerk.de" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
                   <Mail className="w-4 h-4" />
-                  info@polsterfrisch.de
+                  info@reinwerk.de
                 </a>
               </li>
               <li>
@@ -89,7 +89,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="container py-6">
           <p className="text-sm text-muted-foreground text-center">
-            © {new Date().getFullYear()} PolsterFrisch. Alle Rechte vorbehalten.
+            © {new Date().getFullYear()} ReinWerk. Alle Rechte vorbehalten.
           </p>
         </div>
       </div>
