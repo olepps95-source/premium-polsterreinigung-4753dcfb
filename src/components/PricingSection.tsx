@@ -1,47 +1,34 @@
-import { Sofa, BedDouble, Armchair, Sparkles } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Car, UtensilsCrossed, Monitor, Square, LayoutGrid } from 'lucide-react';
+
+const priceItems = {
+  sofas: [
+    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
+    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
+    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa },
+    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: Sofa },
+    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: Sofa },
+  ],
+  matratzen: [
+    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
+    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
+    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
+  ],
+  stuehle: [
+    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: Car },
+    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: UtensilsCrossed },
+    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: Monitor },
+  ],
+  teppiche: [
+    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
+    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
+  ],
+};
 
 const categories = [
-  {
-    id: 'sofas',
-    title: 'Sofas',
-    icon: Sofa,
-    items: [
-      { item: 'Weicher Sessel', price: 'ab 40€' },
-      { item: '2-Sitzer Sofa', price: 'ab 90€' },
-      { item: '3-Sitzer Sofa', price: 'ab 110€' },
-      { item: 'Ecksofa', price: 'ab 130€' },
-      { item: 'Großes Ecksofa', price: 'ab 160€' },
-    ],
-  },
-  {
-    id: 'matratzen',
-    title: 'Matratzen',
-    icon: BedDouble,
-    items: [
-      { item: 'Matratze 90 cm', price: 'ab 60€' },
-      { item: 'Matratze 140 cm', price: 'ab 80€' },
-      { item: 'Matratze 180 cm', price: 'ab 100€' },
-    ],
-  },
-  {
-    id: 'stuehle',
-    title: 'Stühle',
-    icon: Armchair,
-    items: [
-      { item: 'Autositz', price: 'ab 20€' },
-      { item: 'Küchenstuhl', price: 'ab 10€' },
-      { item: 'Bürostuhl', price: 'ab 15€' },
-    ],
-  },
-  {
-    id: 'teppiche',
-    title: 'Teppiche & Teppichboden',
-    icon: Sparkles,
-    items: [
-      { item: 'Teppich', price: '10€/m²' },
-      { item: 'Teppichreinigung ab 10 m²', price: 'Preis nach Vereinbarung' },
-    ],
-  },
+  { id: 'sofas', title: 'Sofas', items: priceItems.sofas },
+  { id: 'matratzen', title: 'Matratzen', items: priceItems.matratzen },
+  { id: 'stuehle', title: 'Stühle', items: priceItems.stuehle },
+  { id: 'teppiche', title: 'Teppiche', items: priceItems.teppiche },
 ];
 
 const quickLinks = [
@@ -60,8 +47,9 @@ export function PricingSection() {
   };
 
   return (
-    <section id="preise" className="py-24 bg-secondary/50">
+    <section id="preise" className="py-24 bg-secondary/30">
       <div className="container">
+        {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-12">
           <p className="text-primary font-semibold text-sm uppercase tracking-wider mb-4">Preisliste</p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
@@ -73,7 +61,7 @@ export function PricingSection() {
         </div>
 
         {/* Quick Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {quickLinks.map((link) => (
             <button
               key={link.target}
@@ -85,45 +73,48 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* Price Cards */}
-        <div className="max-w-4xl mx-auto space-y-8">
+        {/* Price Categories */}
+        <div className="max-w-5xl mx-auto space-y-20">
           {categories.map((category) => (
-            <div
-              key={category.id}
-              id={category.id}
-              className="bg-card rounded-3xl shadow-medium overflow-hidden scroll-mt-32"
-            >
-              <div className="p-8 md:p-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-14 h-14 rounded-2xl bg-accent flex items-center justify-center">
-                    <category.icon className="w-7 h-7 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
-                </div>
-                
-                <div className="space-y-4">
-                  {category.items.map((row, index) => (
-                    <div
-                      key={row.item}
-                      className={`flex items-center justify-between py-4 ${
-                        index !== category.items.length - 1 ? 'border-b border-border/50' : ''
-                      }`}
-                    >
-                      <span className="text-foreground font-medium">{row.item}</span>
-                      <span className="text-lg font-bold text-primary whitespace-nowrap ml-4">{row.price}</span>
+            <div key={category.id} id={category.id} className="scroll-mt-32">
+              {/* Category Title */}
+              <h3 className="text-2xl font-bold text-foreground text-center mb-10">
+                {category.title}
+              </h3>
+              
+              {/* Items Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {category.items.map((item) => (
+                  <div
+                    key={item.id}
+                    className="bg-card rounded-2xl p-8 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/20 transition-all duration-300 flex flex-col items-center text-center group"
+                  >
+                    {/* Icon */}
+                    <div className="w-16 h-16 rounded-2xl bg-accent/50 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors duration-300">
+                      <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
                     </div>
-                  ))}
-                </div>
+                    
+                    {/* Title */}
+                    <h4 className="text-lg font-semibold text-foreground mb-3">
+                      {item.title}
+                    </h4>
+                    
+                    {/* Price */}
+                    <p className="text-xl font-bold text-primary">
+                      {item.price}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
 
         {/* Note */}
-        <div className="max-w-4xl mx-auto mt-8">
-          <div className="px-8 md:px-10 py-6 bg-accent/50 rounded-2xl border border-border/50">
-            <p className="text-sm text-muted-foreground text-center">
-              <strong className="text-foreground">Hinweis:</strong> Endpreise können je nach Verschmutzungsgrad und Material variieren.
+        <div className="max-w-3xl mx-auto mt-16">
+          <div className="px-8 py-6 bg-accent/30 rounded-2xl border border-border/30 text-center">
+            <p className="text-muted-foreground">
+              Endpreise hängen vom Verschmutzungsgrad ab.
             </p>
           </div>
         </div>
