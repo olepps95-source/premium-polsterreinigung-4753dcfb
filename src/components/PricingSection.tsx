@@ -1,4 +1,5 @@
-import { Armchair, Sofa, BedDouble, Car, UtensilsCrossed, Monitor, Square, LayoutGrid } from 'lucide-react';
+import { useState } from 'react';
+import { Armchair, Sofa, BedDouble, Car, UtensilsCrossed, Monitor, Square, LayoutGrid, Check } from 'lucide-react';
 
 const priceItems = {
   sofas: [
@@ -43,6 +44,8 @@ interface PricingSectionProps {
 }
 
 export function PricingSection({ onProductSelect }: PricingSectionProps) {
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+
   const scrollToSection = (target: string) => {
     const element = document.querySelector(target);
     if (element) {
@@ -51,6 +54,8 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
   };
 
   const handleProductClick = (title: string) => {
+    setSelectedProduct(title);
+    
     // Call the callback to update the form with product name only
     if (onProductSelect) {
       onProductSelect(title);
@@ -101,33 +106,51 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
               
               {/* Items Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.items.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleProductClick(item.title)}
-                    className="bg-card rounded-2xl p-8 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/40 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center group cursor-pointer"
-                  >
-                    {/* Icon */}
-                    <div className="w-16 h-16 rounded-2xl bg-accent/50 flex items-center justify-center mb-6 group-hover:bg-primary/10 transition-colors duration-300">
-                      <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-                    </div>
-                    
-                    {/* Title */}
-                    <h4 className="text-lg font-semibold text-foreground mb-3">
-                      {item.title}
-                    </h4>
-                    
-                    {/* Price */}
-                    <p className="text-xl font-bold text-primary">
-                      {item.price}
-                    </p>
+                {category.items.map((item) => {
+                  const isSelected = selectedProduct === item.title;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleProductClick(item.title)}
+                      className={`relative bg-card rounded-2xl p-8 shadow-soft border-2 transition-all duration-300 flex flex-col items-center text-center group cursor-pointer ${
+                        isSelected 
+                          ? 'border-primary shadow-medium scale-[1.02]' 
+                          : 'border-border/50 hover:shadow-medium hover:border-primary/40 hover:scale-[1.02]'
+                      }`}
+                    >
+                      {/* Selected Checkmark */}
+                      {isSelected && (
+                        <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                          <Check className="w-4 h-4 text-primary-foreground" strokeWidth={2.5} />
+                        </div>
+                      )}
 
-                    {/* Hover hint */}
-                    <p className="text-xs text-muted-foreground mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      Klicken zum Anfragen
-                    </p>
-                  </button>
-                ))}
+                      {/* Icon */}
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${
+                        isSelected ? 'bg-primary/10' : 'bg-accent/50 group-hover:bg-primary/10'
+                      }`}>
+                        <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                      </div>
+                      
+                      {/* Title */}
+                      <h4 className="text-lg font-semibold text-foreground mb-3">
+                        {item.title}
+                      </h4>
+                      
+                      {/* Price */}
+                      <p className="text-xl font-bold text-primary">
+                        {item.price}
+                      </p>
+
+                      {/* Hover hint */}
+                      <p className={`text-xs text-muted-foreground mt-4 transition-opacity duration-300 ${
+                        isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                      }`}>
+                        {isSelected ? 'Ausgewählt' : 'Klicken zum Anfragen'}
+                      </p>
+                    </button>
+                  );
+                })}
               </div>
             </div>
           ))}
