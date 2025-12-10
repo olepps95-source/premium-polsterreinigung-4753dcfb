@@ -50,12 +50,10 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
     }
   };
 
-  const handleProductClick = (title: string, price: string) => {
-    const productText = `${title} – ${price}`;
-    
-    // Call the callback to update the form
+  const handleProductClick = (title: string) => {
+    // Call the callback to update the form with product name only
     if (onProductSelect) {
-      onProductSelect(productText);
+      onProductSelect(title);
     }
     
     // Scroll to contact form
@@ -106,7 +104,7 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                 {category.items.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => handleProductClick(item.title, item.price)}
+                    onClick={() => handleProductClick(item.title)}
                     className="bg-card rounded-2xl p-8 shadow-soft border border-border/50 hover:shadow-medium hover:border-primary/40 hover:scale-[1.02] transition-all duration-300 flex flex-col items-center text-center group cursor-pointer"
                   >
                     {/* Icon */}
