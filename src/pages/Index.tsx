@@ -7,16 +7,15 @@ import { PricingSection } from '@/components/PricingSection';
 import { BeforeAfterSection } from '@/components/BeforeAfterSection';
 import { ReviewsSection } from '@/components/ReviewsSection';
 import { ServiceAreaSection } from '@/components/ServiceAreaSection';
-import { ContactFormSection, ContactFormHandle } from '@/components/ContactFormSection';
-import { CTASection } from '@/components/CTASection';
+import { CTASection, CTAFormHandle } from '@/components/CTASection';
 import { Footer } from '@/components/Footer';
 
 const Index = () => {
-  const contactFormRef = useRef<ContactFormHandle>(null);
+  const ctaFormRef = useRef<CTAFormHandle>(null);
 
   const handleProductSelect = (product: string) => {
-    if (contactFormRef.current) {
-      contactFormRef.current.setSelectedProduct(product);
+    if (ctaFormRef.current) {
+      ctaFormRef.current.setSelectedProduct(product);
     }
   };
 
@@ -31,8 +30,7 @@ const Index = () => {
         <BeforeAfterSection />
         <ReviewsSection />
         <ServiceAreaSection />
-        <ContactFormSection ref={contactFormRef} />
-        <CTASection />
+        <CTASection ref={ctaFormRef} />
       </main>
       <Footer />
     </div>
