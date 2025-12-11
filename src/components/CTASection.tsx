@@ -188,6 +188,14 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
                 />
               </div>
 
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Mit dem Absenden des Formulars erkläre ich mich damit einverstanden, dass meine angegebenen Daten zum Zweck der Kontaktaufnahme und Bearbeitung meiner Anfrage verarbeitet werden. Ich kann diese Einwilligung jederzeit per E-Mail an{' '}
+                <a href="mailto:info@reinwerk-service.de" className="text-primary hover:underline">
+                  info@reinwerk-service.de
+                </a>{' '}
+                widerrufen.
+              </p>
+
               <Button
                 type="submit"
                 variant="cta"
