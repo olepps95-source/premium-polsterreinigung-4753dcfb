@@ -14,7 +14,7 @@ const services = [
   {
     icon: Droplets,
     title: 'Fleckenentfernung',
-    description: 'Spezialisierte Behandlung von hartnäckigen Flecken wie Kaffee, Rotwein, Tinte oder Tierurin.',
+    description: 'Spezialisierte Behandlung von hartnäckigen Flecken wie Kaffee, Rotwein, Tinte, Blut oder Tierurin.',
   },
   {
     icon: Wind,

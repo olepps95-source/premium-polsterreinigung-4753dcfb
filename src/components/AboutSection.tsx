@@ -33,9 +33,9 @@ export function AboutSection() {
             Ihr Partner für saubere Polster
           </h2>
           <p className="text-lg text-muted-foreground">
-            Mit jahrelanger Erfahrung und modernster Technik sorgen wir dafür, dass Ihre Polstermöbel 
-            wieder wie neu aussehen. Unsere professionelle Reinigung verlängert die Lebensdauer Ihrer 
-            Möbel und schafft ein hygienisches Zuhause.
+            Mit viel Erfahrung und moderner Ausrüstung tragen wir dazu bei, dass Ihre Polstermöbel 
+            wieder frisch und gepflegt wirken. Unsere gründliche Reinigung unterstützt den Erhalt Ihrer 
+            Möbel und sorgt für ein angenehmes, hygienisches Wohngefühl.
           </p>
         </div>
 
