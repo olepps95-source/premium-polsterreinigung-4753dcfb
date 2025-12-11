@@ -16,6 +16,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     location: '',
     email: '',
     phone: '',
+    appointmentDate: '',
     product: '',
     message: '',
   });
@@ -53,6 +54,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
       location: '',
       email: '',
       phone: '',
+      appointmentDate: '',
       product: '',
       message: '',
     });
@@ -137,7 +139,22 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="0176 123 456 78"
+                  placeholder="01636986317"
+                  className="h-12 bg-card border-border/50 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="appointmentDate" className="text-foreground font-medium">
+                  Wunschtermin (TT.MM.JJJJ HH:MM)
+                </Label>
+                <Input
+                  id="appointmentDate"
+                  name="appointmentDate"
+                  type="text"
+                  value={formData.appointmentDate}
+                  onChange={handleChange}
+                  placeholder="12.03.2025 15:30"
                   className="h-12 bg-card border-border/50 focus:border-primary"
                 />
               </div>
@@ -186,15 +203,15 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
           {/* WhatsApp & Phone Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button variant="hero" size="xl" className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-              <a href="https://wa.me/4917612345678" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/message/5SVXIYHUNM7LN1" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp schreiben
               </a>
             </Button>
             <Button variant="heroOutline" size="xl" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-foreground" asChild>
-              <a href="tel:+4917612345678">
+              <a href="tel:+4901636986317">
                 <Phone className="w-5 h-5" />
-                0176 123 456 78
+                01636986317
               </a>
             </Button>
           </div>

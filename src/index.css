@@ -32,6 +32,7 @@
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
+    --input-text: 0 0% 0%;
     --ring: 200 85% 45%;
 
     --radius: 0.75rem;
@@ -84,6 +85,7 @@
 
     --border: 220 15% 20%;
     --input: 220 15% 20%;
+    --input-text: 0 0% 100%;
     --ring: 200 85% 50%;
 
     --anthracite: 220 15% 85%;
