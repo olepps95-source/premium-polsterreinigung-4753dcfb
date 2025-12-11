@@ -77,7 +77,7 @@ export function Footer() {
               <li>
                 <span className="flex items-center gap-3 text-muted-foreground">
                   <MapPin className="w-4 h-4" />
-                  Chemnitz & Umgebung
+                  09113 Chemnitz, Matthesstraße 48
                 </span>
               </li>
             </ul>
@@ -88,18 +88,13 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Rechtliches</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#impressum" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="/impressum" className="text-muted-foreground hover:text-primary transition-colors">
                   Impressum
                 </a>
               </li>
               <li>
-                <a href="#datenschutz" className="text-muted-foreground hover:text-primary transition-colors">
-                  Datenschutz
-                </a>
-              </li>
-              <li>
-                <a href="#agb" className="text-muted-foreground hover:text-primary transition-colors">
-                  AGB
+                <a href="/datenschutz" className="text-muted-foreground hover:text-primary transition-colors">
+                  Datenschutzerklärung
                 </a>
               </li>
             </ul>
