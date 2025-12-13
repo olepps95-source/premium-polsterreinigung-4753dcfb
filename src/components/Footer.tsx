@@ -97,6 +97,16 @@ export function Footer() {
                   Datenschutzerklärung
                 </a>
               </li>
+              <li>
+                <a href="/agb" className="text-muted-foreground hover:text-primary transition-colors">
+                  AGB
+                </a>
+              </li>
+              <li>
+                <a href="/widerrufsbelehrung" className="text-muted-foreground hover:text-primary transition-colors">
+                  Widerrufsbelehrung
+                </a>
+              </li>
             </ul>
           </div>
         </div>
