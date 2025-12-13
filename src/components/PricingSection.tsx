@@ -1,5 +1,66 @@
 import { useState } from 'react';
-import { Armchair, Sofa, BedDouble, Car, UtensilsCrossed, Monitor, Square, LayoutGrid, Check } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
+
+// Custom Car Seat icon for Autositz
+const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth={strokeWidth || 1.5} 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M6 20V8a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v12" />
+    <path d="M6 12h12" />
+    <path d="M8 16h8" />
+    <path d="M5 20h14" />
+    <path d="M8 20v2" />
+    <path d="M16 20v2" />
+  </svg>
+);
+
+// Custom Dining Chair icon for Küchenstuhl
+const DiningChairIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth={strokeWidth || 1.5} 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M7 4v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4" />
+    <path d="M7 10v10" />
+    <path d="M17 10v10" />
+    <path d="M5 20h14" />
+    <path d="M9 14h6" />
+  </svg>
+);
+
+// Custom Office Chair icon for Bürostuhl
+const OfficeChairIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth={strokeWidth || 1.5} 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M7 11V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5" />
+    <path d="M5 11h14v3a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3z" />
+    <path d="M12 16v3" />
+    <path d="M8 22h8" />
+    <path d="M6 22l2-3" />
+    <path d="M18 22l-2-3" />
+    <path d="M4 11h2" />
+    <path d="M18 11h2" />
+  </svg>
+);
 
 const priceItems = {
   sofas: [
@@ -15,9 +76,9 @@ const priceItems = {
     { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
   ],
   stuehle: [
-    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: Car },
-    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: UtensilsCrossed },
-    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: Monitor },
+    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon },
+    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon },
+    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
   ],
   teppiche: [
     { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
