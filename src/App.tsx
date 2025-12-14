@@ -11,6 +11,7 @@ import Widerrufsbelehrung from "./pages/Widerrufsbelehrung";
 import NotFound from "./pages/NotFound";
 import { CookieBanner } from "./components/CookieBanner";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
+import { MetaPixelProvider } from "./components/MetaPixelProvider";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <MetaPixelProvider />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/datenschutz" element={<Datenschutz />} />

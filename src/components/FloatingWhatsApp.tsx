@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackContact } from '@/lib/meta-pixel';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -34,6 +35,7 @@ export const FloatingWhatsApp = () => {
         onMouseLeave={() => setShowTooltip(false)}
         onFocus={() => setShowTooltip(true)}
         onBlur={() => setShowTooltip(false)}
+        onClick={() => trackContact()}
         className="flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
         aria-label="WhatsApp schreiben"
       >
