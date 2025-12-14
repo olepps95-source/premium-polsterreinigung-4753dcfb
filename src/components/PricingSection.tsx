@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
-
+import ecksofaIcon from '@/assets/ecksofa-icon.png';
 // Custom Car Seat icon for Autositz
 const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
@@ -64,25 +64,25 @@ const OfficeChairIcon = ({ className, strokeWidth }: { className?: string; strok
 
 const priceItems = {
   sofas: [
-    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
-    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
-    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa },
-    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: Sofa },
-    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: Sofa },
+    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair, image: null },
+    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa, image: null },
+    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa, image: null },
+    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: Sofa, image: ecksofaIcon },
+    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: Sofa, image: ecksofaIcon },
   ],
   matratzen: [
-    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
-    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
-    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
+    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble, image: null },
+    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble, image: null },
+    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble, image: null },
   ],
   stuehle: [
-    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon },
-    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon },
-    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
+    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon, image: null },
+    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon, image: null },
+    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon, image: null },
   ],
   teppiche: [
-    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
-    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
+    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square, image: null },
+    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid, image: null },
   ],
 };
 
@@ -190,7 +190,11 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                       <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${
                         isSelected ? 'bg-primary/10' : 'bg-accent/50 group-hover:bg-primary/10'
                       }`}>
-                        <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                        {item.image ? (
+                          <img src={item.image} alt={item.title} className="w-10 h-10 object-contain" />
+                        ) : (
+                          <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                        )}
                       </div>
                       
                       {/* Title */}
