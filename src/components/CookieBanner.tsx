@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { initializeMetaPixel } from '@/lib/meta-pixel';
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,11 +15,14 @@ export function CookieBanner() {
   const handleAcceptAll = () => {
     localStorage.setItem('cookie-consent', 'all');
     setIsVisible(false);
+    // Initialize Meta Pixel after marketing consent is granted
+    initializeMetaPixel();
   };
 
   const handleAcceptNecessary = () => {
     localStorage.setItem('cookie-consent', 'necessary');
     setIsVisible(false);
+    // Do NOT initialize Meta Pixel - only necessary cookies allowed
   };
 
   if (!isVisible) return null;

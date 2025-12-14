@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Phone, MessageCircle, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { trackLead, trackContact } from '@/lib/meta-pixel';
 
 export interface CTAFormHandle {
   setSelectedProduct: (product: string) => void;
@@ -48,6 +49,9 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
       title: "Anfrage gesendet!",
       description: "Wir melden uns schnellstmöglich bei Ihnen.",
     });
+
+    // Track Lead event for Meta Pixel (only fires if consent granted)
+    trackLead();
 
     setFormData({
       name: '',
@@ -211,7 +215,12 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
           {/* WhatsApp & Phone Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button variant="hero" size="xl" className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
-              <a href="https://wa.me/message/5SVXIYHUNM7LN1" target="_blank" rel="noopener noreferrer">
+              <a 
+                href="https://wa.me/message/5SVXIYHUNM7LN1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                onClick={() => trackContact()}
+              >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp schreiben
               </a>
