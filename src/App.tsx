@@ -10,6 +10,7 @@ import AGB from "./pages/AGB";
 import Widerrufsbelehrung from "./pages/Widerrufsbelehrung";
 import NotFound from "./pages/NotFound";
 import { CookieBanner } from "./components/CookieBanner";
+import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <CookieBanner />
+        <FloatingWhatsApp />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
