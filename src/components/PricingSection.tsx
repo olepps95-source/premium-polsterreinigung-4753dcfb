@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
 
-// Custom Ecksofa icon - exactly matching Lucide Sofa style
-// Lucide Sofa paths: backrest, seat with armrests, legs, center divider
+// Ecksofa icon - minimal adaptation of Lucide Sofa for L-shape
 const EcksofaIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
     viewBox="0 0 24 24" 
@@ -13,21 +12,16 @@ const EcksofaIcon = ({ className, strokeWidth }: { className?: string; strokeWid
     strokeLinejoin="round"
     className={className}
   >
-    {/* Backrest - same style as Lucide Sofa */}
-    <path d="M18 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-    {/* Main seat with armrests - L-shape extension */}
-    <path d="M2 16a2 2 0 0 0 2 2h10v-7a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
-    {/* L-extension seat */}
-    <path d="M14 18h6a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H14" />
-    {/* Legs */}
+    <path d="M17 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+    <path d="M2 16a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+    <path d="M15 16a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v1" />
     <path d="M4 18v2" />
-    <path d="M20 16v4" />
-    {/* Center divider */}
-    <path d="M10 4v8" />
+    <path d="M20 18v2" />
+    <path d="M10 4v7" />
   </svg>
 );
 
-// Custom Large Ecksofa icon - exactly matching Lucide Sofa style
+// Ecksofa groß icon - same style, slightly wider L-extension
 const EcksofaGrossIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
     viewBox="0 0 24 24" 
@@ -38,17 +32,12 @@ const EcksofaGrossIcon = ({ className, strokeWidth }: { className?: string; stro
     strokeLinejoin="round"
     className={className}
   >
-    {/* Backrest - same style as Lucide Sofa */}
-    <path d="M16 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-    {/* Main seat with armrests */}
-    <path d="M2 16a2 2 0 0 0 2 2h8v-7a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
-    {/* Larger L-extension seat */}
-    <path d="M12 18h8a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H12" />
-    {/* Legs */}
+    <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+    <path d="M2 16a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+    <path d="M13 16a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H13" />
     <path d="M4 18v2" />
-    <path d="M20 16v4" />
-    {/* Center divider */}
-    <path d="M9 4v8" />
+    <path d="M20 18v2" />
+    <path d="M9 4v7" />
   </svg>
 );
 // Custom Car Seat icon for Autositz
