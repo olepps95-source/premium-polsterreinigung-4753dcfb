@@ -1,23 +1,36 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
 
-// Ecksofa icon - minimal adaptation of Lucide Sofa for L-shape
-const EcksofaIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
+// Ecksofa icon - exact copy of reference image
+const EcksofaIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
   <svg 
-    viewBox="0 0 24 24" 
+    viewBox="0 0 100 50" 
     fill="none" 
     stroke="currentColor" 
-    strokeWidth={strokeWidth}
+    strokeWidth={4}
     strokeLinecap="round" 
     strokeLinejoin="round"
     className={className}
   >
-    <path d="M17 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-    <path d="M2 16a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
-    <path d="M15 16a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v1" />
-    <path d="M4 18v2" />
-    <path d="M20 18v2" />
-    <path d="M10 4v7" />
+    {/* Left armrest */}
+    <path d="M8 16 C4 16 2 18 2 22 L2 34 C2 37 4 39 7 39 L7 42" />
+    {/* Main sofa backrest */}
+    <path d="M8 16 L8 10 C8 7 10 5 13 5 L62 5 C65 5 67 7 67 10 L67 16" />
+    {/* Main sofa front/seat */}
+    <path d="M8 39 L55 39 L55 32" />
+    {/* Backrest cushion dividers */}
+    <path d="M26 5 L26 16" />
+    <path d="M44 5 L44 16" />
+    {/* Seat line */}
+    <path d="M8 22 L67 22" />
+    {/* L-section */}
+    <path d="M67 16 L67 22 L98 22 L98 39 C98 42 96 44 93 44 L60 44 C57 44 55 42 55 39" />
+    {/* L-section inner seat line */}
+    <path d="M67 32 L93 32" />
+    {/* Legs */}
+    <circle cx="7" cy="44" r="2" fill="currentColor" />
+    <circle cx="60" cy="46" r="2" fill="currentColor" />
+    <circle cx="93" cy="46" r="2" fill="currentColor" />
   </svg>
 );
 
