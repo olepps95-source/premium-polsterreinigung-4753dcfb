@@ -1,6 +1,65 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
-import ecksofaIcon from '@/assets/ecksofa-icon.png';
+
+// Custom Ecksofa (L-shaped sectional) icon matching the existing icon style
+const EcksofaIcon = ({ className, strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth={strokeWidth}
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={className}
+  >
+    {/* Main sofa backrest */}
+    <path d="M2 8C2 6.9 2.9 6 4 6H14C15.1 6 16 6.9 16 8V10H2V8Z" />
+    {/* Backrest cushion dividers */}
+    <line x1="6" y1="6" x2="6" y2="10" />
+    <line x1="10" y1="6" x2="10" y2="10" />
+    {/* Main seat */}
+    <path d="M2 10V14C2 14.5 2.2 15 2.5 15H16V10H2Z" />
+    {/* Left armrest */}
+    <path d="M2 8V14" />
+    <circle cx="2.5" cy="16" r="0.5" />
+    {/* Extension piece (L-shape) */}
+    <path d="M16 10H21C21.5 10 22 10.5 22 11V14C22 14.5 21.5 15 21 15H16V10Z" />
+    {/* Extension legs */}
+    <circle cx="19" cy="16" r="0.5" />
+    <circle cx="15.5" cy="16" r="0.5" />
+  </svg>
+);
+
+// Custom Large Ecksofa icon (slightly bigger L-shape proportions)
+const EcksofaGrossIcon = ({ className, strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth={strokeWidth}
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={className}
+  >
+    {/* Main sofa backrest - wider */}
+    <path d="M1 8C1 6.9 1.9 6 3 6H13C14.1 6 15 6.9 15 8V10H1V8Z" />
+    {/* Backrest cushion dividers */}
+    <line x1="5" y1="6" x2="5" y2="10" />
+    <line x1="9" y1="6" x2="9" y2="10" />
+    {/* Main seat */}
+    <path d="M1 10V14C1 14.5 1.2 15 1.5 15H15V10H1Z" />
+    {/* Left armrest */}
+    <path d="M1 8V14" />
+    <circle cx="1.5" cy="16" r="0.5" />
+    {/* Larger extension piece (L-shape) */}
+    <path d="M15 10H22.5C23 10 23 10.5 23 11V14C23 14.5 22.5 15 22 15H15V10Z" />
+    {/* Extension backrest small */}
+    <path d="M18 8C18 7.5 18.3 7 18.8 7H21C21.5 7 22 7.5 22 8V10H18V8Z" />
+    {/* Extension legs */}
+    <circle cx="20" cy="16" r="0.5" />
+    <circle cx="14.5" cy="16" r="0.5" />
+  </svg>
+);
 // Custom Car Seat icon for Autositz
 const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
@@ -64,25 +123,25 @@ const OfficeChairIcon = ({ className, strokeWidth }: { className?: string; strok
 
 const priceItems = {
   sofas: [
-    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair, image: null },
-    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa, image: null },
-    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa, image: null },
-    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: Sofa, image: ecksofaIcon },
-    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: Sofa, image: ecksofaIcon },
+    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
+    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
+    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa },
+    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: EcksofaIcon },
+    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
   ],
   matratzen: [
-    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble, image: null },
-    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble, image: null },
-    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble, image: null },
+    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
+    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
+    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
   ],
   stuehle: [
-    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon, image: null },
-    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon, image: null },
-    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon, image: null },
+    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon },
+    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon },
+    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
   ],
   teppiche: [
-    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square, image: null },
-    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid, image: null },
+    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
+    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
   ],
 };
 
@@ -190,11 +249,7 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                       <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${
                         isSelected ? 'bg-primary/10' : 'bg-accent/50 group-hover:bg-primary/10'
                       }`}>
-                        {item.image ? (
-                          <img src={item.image} alt={item.title} className="w-10 h-10 object-contain" />
-                        ) : (
-                          <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-                        )}
+                        <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
                       </div>
                       
                       {/* Title */}
