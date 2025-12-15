@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
 
-// Custom Ecksofa (L-shaped sectional) icon matching the existing icon style
-const EcksofaIcon = ({ className, strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) => (
+// Custom Ecksofa icon - exactly matching Lucide Sofa style
+// Lucide Sofa paths: backrest, seat with armrests, legs, center divider
+const EcksofaIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
     viewBox="0 0 24 24" 
     fill="none" 
@@ -12,26 +13,22 @@ const EcksofaIcon = ({ className, strokeWidth = 1.5 }: { className?: string; str
     strokeLinejoin="round"
     className={className}
   >
-    {/* Main sofa backrest */}
-    <path d="M2 8C2 6.9 2.9 6 4 6H14C15.1 6 16 6.9 16 8V10H2V8Z" />
-    {/* Backrest cushion dividers */}
-    <line x1="6" y1="6" x2="6" y2="10" />
-    <line x1="10" y1="6" x2="10" y2="10" />
-    {/* Main seat */}
-    <path d="M2 10V14C2 14.5 2.2 15 2.5 15H16V10H2Z" />
-    {/* Left armrest */}
-    <path d="M2 8V14" />
-    <circle cx="2.5" cy="16" r="0.5" />
-    {/* Extension piece (L-shape) */}
-    <path d="M16 10H21C21.5 10 22 10.5 22 11V14C22 14.5 21.5 15 21 15H16V10Z" />
-    {/* Extension legs */}
-    <circle cx="19" cy="16" r="0.5" />
-    <circle cx="15.5" cy="16" r="0.5" />
+    {/* Backrest - same style as Lucide Sofa */}
+    <path d="M18 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+    {/* Main seat with armrests - L-shape extension */}
+    <path d="M2 16a2 2 0 0 0 2 2h10v-7a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+    {/* L-extension seat */}
+    <path d="M14 18h6a2 2 0 0 0 2-2v-3a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H14" />
+    {/* Legs */}
+    <path d="M4 18v2" />
+    <path d="M20 16v4" />
+    {/* Center divider */}
+    <path d="M10 4v8" />
   </svg>
 );
 
-// Custom Large Ecksofa icon (slightly bigger L-shape proportions)
-const EcksofaGrossIcon = ({ className, strokeWidth = 1.5 }: { className?: string; strokeWidth?: number }) => (
+// Custom Large Ecksofa icon - exactly matching Lucide Sofa style
+const EcksofaGrossIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
   <svg 
     viewBox="0 0 24 24" 
     fill="none" 
@@ -41,23 +38,17 @@ const EcksofaGrossIcon = ({ className, strokeWidth = 1.5 }: { className?: string
     strokeLinejoin="round"
     className={className}
   >
-    {/* Main sofa backrest - wider */}
-    <path d="M1 8C1 6.9 1.9 6 3 6H13C14.1 6 15 6.9 15 8V10H1V8Z" />
-    {/* Backrest cushion dividers */}
-    <line x1="5" y1="6" x2="5" y2="10" />
-    <line x1="9" y1="6" x2="9" y2="10" />
-    {/* Main seat */}
-    <path d="M1 10V14C1 14.5 1.2 15 1.5 15H15V10H1Z" />
-    {/* Left armrest */}
-    <path d="M1 8V14" />
-    <circle cx="1.5" cy="16" r="0.5" />
-    {/* Larger extension piece (L-shape) */}
-    <path d="M15 10H22.5C23 10 23 10.5 23 11V14C23 14.5 22.5 15 22 15H15V10Z" />
-    {/* Extension backrest small */}
-    <path d="M18 8C18 7.5 18.3 7 18.8 7H21C21.5 7 22 7.5 22 8V10H18V8Z" />
-    {/* Extension legs */}
-    <circle cx="20" cy="16" r="0.5" />
-    <circle cx="14.5" cy="16" r="0.5" />
+    {/* Backrest - same style as Lucide Sofa */}
+    <path d="M16 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
+    {/* Main seat with armrests */}
+    <path d="M2 16a2 2 0 0 0 2 2h8v-7a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
+    {/* Larger L-extension seat */}
+    <path d="M12 18h8a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H12" />
+    {/* Legs */}
+    <path d="M4 18v2" />
+    <path d="M20 16v4" />
+    {/* Center divider */}
+    <path d="M9 4v8" />
   </svg>
 );
 // Custom Car Seat icon for Autositz
