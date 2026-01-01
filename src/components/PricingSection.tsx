@@ -4,6 +4,7 @@ import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
 import autositzIcon from '@/assets/autositz-icon.svg';
 import kuechenstuhlIcon from '@/assets/kuechenstuhl-icon.svg';
+import buerostuhlIcon from '@/assets/buerostuhl-icon.svg';
 
 // Sofa 3-Sitzer icon - using imported SVG
 const Sofa3SitzerIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -77,26 +78,9 @@ const KuechenstuhlIcon = ({ className }: { className?: string; strokeWidth?: num
   <img src={kuechenstuhlIcon} alt="Küchenstuhl" className={className} />
 );
 
-// Custom Office Chair icon for Bürostuhl
-const OfficeChairIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth={strokeWidth || 1.5} 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
-    <path d="M7 11V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5" />
-    <path d="M5 11h14v3a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3z" />
-    <path d="M12 16v3" />
-    <path d="M8 22h8" />
-    <path d="M6 22l2-3" />
-    <path d="M18 22l-2-3" />
-    <path d="M4 11h2" />
-    <path d="M18 11h2" />
-  </svg>
+// Bürostuhl icon - using imported SVG
+const BuerostuhlIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
+  <img src={buerostuhlIcon} alt="Bürostuhl" className={className} />
 );
 
 const priceItems = {
@@ -115,7 +99,7 @@ const priceItems = {
   stuehle: [
     { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
     { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: KuechenstuhlIcon },
-    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
+    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: BuerostuhlIcon },
   ],
   teppiche: [
     { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
