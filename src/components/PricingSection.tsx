@@ -3,6 +3,7 @@ import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-rea
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
 import autositzIcon from '@/assets/autositz-icon.svg';
+import kuechenstuhlIcon from '@/assets/kuechenstuhl-icon.svg';
 
 // Sofa 3-Sitzer icon - using imported SVG
 const Sofa3SitzerIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -71,23 +72,9 @@ const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWid
   </svg>
 );
 
-// Custom Dining Chair icon for Küchenstuhl
-const DiningChairIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth={strokeWidth || 1.5} 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
-    <path d="M7 4v4a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4" />
-    <path d="M7 10v10" />
-    <path d="M17 10v10" />
-    <path d="M5 20h14" />
-    <path d="M9 14h6" />
-  </svg>
+// Küchenstuhl icon - using imported SVG
+const KuechenstuhlIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
+  <img src={kuechenstuhlIcon} alt="Küchenstuhl" className={className} />
 );
 
 // Custom Office Chair icon for Bürostuhl
@@ -127,7 +114,7 @@ const priceItems = {
   ],
   stuehle: [
     { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
-    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon },
+    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: KuechenstuhlIcon },
     { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
   ],
   teppiche: [
