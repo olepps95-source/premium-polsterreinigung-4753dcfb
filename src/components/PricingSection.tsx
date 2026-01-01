@@ -2,10 +2,16 @@ import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
+import autositzIcon from '@/assets/autositz-icon.svg';
 
 // Sofa 3-Sitzer icon - using imported SVG
 const Sofa3SitzerIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
   <img src={sofa3SitzerIcon} alt="Sofa 3-Sitzer" className={className} />
+);
+
+// Autositz icon - using imported SVG
+const AutositzIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
+  <img src={autositzIcon} alt="Autositz" className={className} />
 );
 
 // Ecksofa icon - exact copy of reference image
@@ -120,7 +126,7 @@ const priceItems = {
     { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
   ],
   stuehle: [
-    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: CarSeatIcon },
+    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
     { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: DiningChairIcon },
     { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: OfficeChairIcon },
   ],
