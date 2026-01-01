@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
+import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
+
+// Sofa 3-Sitzer icon - using imported SVG
+const Sofa3SitzerIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
+  <img src={sofa3SitzerIcon} alt="Sofa 3-Sitzer" className={className} />
+);
 
 // Ecksofa icon - exact copy of reference image
 const EcksofaIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -104,7 +110,7 @@ const priceItems = {
   sofas: [
     { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
     { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
-    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa },
+    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa3SitzerIcon },
     { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: EcksofaIcon },
     { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
   ],
