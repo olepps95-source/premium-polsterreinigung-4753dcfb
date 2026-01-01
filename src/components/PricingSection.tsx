@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
+import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 
 // Ecksofa icon - exact copy of reference image
 const EcksofaIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -34,24 +35,9 @@ const EcksofaIcon = ({ className }: { className?: string; strokeWidth?: number }
   </svg>
 );
 
-// Ecksofa groß icon - same style, slightly wider L-extension
-const EcksofaGrossIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
-  <svg 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth={strokeWidth}
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
-    <path d="M2 16a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
-    <path d="M13 16a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5H13" />
-    <path d="M4 18v2" />
-    <path d="M20 18v2" />
-    <path d="M9 4v7" />
-  </svg>
+// Ecksofa groß icon - using imported SVG
+const EcksofaGrossIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
+  <img src={ecksofaGrossIcon} alt="Ecksofa groß" className={className} />
 );
 // Custom Car Seat icon for Autositz
 const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
