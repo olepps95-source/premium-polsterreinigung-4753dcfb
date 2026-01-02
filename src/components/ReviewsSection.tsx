@@ -36,9 +36,6 @@ export function ReviewsSection() {
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Das sagen unsere Kunden
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Über 500 zufriedene Kunden vertrauen unserer Arbeit. Lesen Sie, was sie über uns sagen.
-          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">

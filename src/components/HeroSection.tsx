@@ -53,12 +53,12 @@ export function HeroSection() {
               <p className="text-sm text-muted-foreground">Zufriedene Kunden</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-primary">5.0</p>
+              <p className="text-3xl font-bold text-primary">4.8/5</p>
               <p className="text-sm text-muted-foreground">Google Bewertung</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-primary">24h</p>
-              <p className="text-sm text-muted-foreground">Schnelle Trocknung</p>
+              <p className="text-3xl font-bold text-primary whitespace-nowrap text-xl md:text-3xl">Gratis</p>
+              <p className="text-sm text-muted-foreground">Kostenlose Express-Trocknung</p>
             </div>
           </div>
         </div>
