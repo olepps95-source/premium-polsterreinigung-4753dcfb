@@ -126,7 +126,10 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                 >
                   {/* Icon */}
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/50 flex items-center justify-center mb-4">
-                    <item.icon className="w-12 h-12 md:w-14 md:h-14 text-primary" strokeWidth={1.5} />
+                    <item.icon 
+                      className={`text-primary ${item.id === 'ecksofa-gross' ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]' : 'w-12 h-12 md:w-14 md:h-14'}`} 
+                      strokeWidth={1.5} 
+                    />
                   </div>
                   
                   {/* Title */}
