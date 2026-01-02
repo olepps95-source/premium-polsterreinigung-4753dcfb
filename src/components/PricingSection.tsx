@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Check } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus } from 'lucide-react';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
 import autositzIcon from '@/assets/autositz-icon.svg';
@@ -53,25 +53,6 @@ const EcksofaIcon = ({ className }: { className?: string; strokeWidth?: number }
 const EcksofaGrossIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
   <img src={ecksofaGrossIcon} alt="Ecksofa groß" className={className} />
 );
-// Custom Car Seat icon for Autositz
-const CarSeatIcon = ({ className, strokeWidth }: { className?: string; strokeWidth?: number }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth={strokeWidth || 1.5} 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
-    <path d="M6 20V8a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v12" />
-    <path d="M6 12h12" />
-    <path d="M8 16h8" />
-    <path d="M5 20h14" />
-    <path d="M8 20v2" />
-    <path d="M16 20v2" />
-  </svg>
-);
 
 // Küchenstuhl icon - using imported SVG
 const KuechenstuhlIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -83,42 +64,25 @@ const BuerostuhlIcon = ({ className }: { className?: string; strokeWidth?: numbe
   <img src={buerostuhlIcon} alt="Bürostuhl" className={className} />
 );
 
-const priceItems = {
-  sofas: [
-    { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
-    { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
-    { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa3SitzerIcon },
-    { id: 'ecksofa', title: 'ECKCOUCH', price: 'ab 130 €', icon: EcksofaIcon },
-    { id: 'ecksofa-gross', title: 'ECKCOUCH, groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
-  ],
-  matratzen: [
-    { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
-    { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
-    { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
-  ],
-  stuehle: [
-    { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
-    { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: KuechenstuhlIcon },
-    { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: BuerostuhlIcon },
-  ],
-  teppiche: [
-    { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
-    { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
-  ],
-};
-
-const categories = [
-  { id: 'sofas', title: 'Sofas', items: priceItems.sofas },
-  { id: 'matratzen', title: 'Matratzen', items: priceItems.matratzen },
-  { id: 'stuehle', title: 'Stühle', items: priceItems.stuehle },
-  { id: 'teppiche', title: 'Teppiche', items: priceItems.teppiche },
-];
-
-const quickLinks = [
-  { label: 'Sofas', target: '#sofas' },
-  { label: 'Matratzen', target: '#matratzen' },
-  { label: 'Stühle', target: '#stuehle' },
-  { label: 'Teppiche', target: '#teppiche' },
+// All items merged into one unified list (order: Sofas, Matratzen, Stühle, Teppiche)
+const allPriceItems = [
+  // Sofas
+  { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
+  { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
+  { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa3SitzerIcon },
+  { id: 'ecksofa', title: 'ECKCOUCH', price: 'ab 130 €', icon: EcksofaIcon },
+  { id: 'ecksofa-gross', title: 'ECKCOUCH, groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
+  // Matratzen
+  { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
+  { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
+  { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
+  // Stühle
+  { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
+  { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: KuechenstuhlIcon },
+  { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: BuerostuhlIcon },
+  // Teppiche
+  { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
+  { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
 ];
 
 interface PricingSectionProps {
@@ -126,28 +90,14 @@ interface PricingSectionProps {
 }
 
 export function PricingSection({ onProductSelect }: PricingSectionProps) {
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
 
-  const scrollToSection = (target: string) => {
-    const element = document.querySelector(target);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const handleProductClick = (title: string) => {
-    setSelectedProduct(title);
-    
-    // Call the callback to update the form with product name only
-    if (onProductSelect) {
-      onProductSelect(title);
-    }
-    
-    // Scroll to contact form
-    const formElement = document.querySelector('#kontaktformular');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const handleQuantityChange = (itemId: string, delta: number) => {
+    setQuantities(prev => {
+      const current = prev[itemId] || 0;
+      const newValue = Math.max(0, current + delta);
+      return { ...prev, [itemId]: newValue };
+    });
   };
 
   return (
@@ -164,78 +114,55 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
           </p>
         </div>
 
-        {/* Quick Navigation */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {quickLinks.map((link) => (
-            <button
-              key={link.target}
-              onClick={() => scrollToSection(link.target)}
-              className="px-6 py-3 bg-card border border-border rounded-full text-sm font-medium text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 shadow-sm"
-            >
-              {link.label}
-            </button>
-          ))}
-        </div>
+        {/* Unified Price Grid */}
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {allPriceItems.map((item) => {
+              const quantity = quantities[item.id] || 0;
+              return (
+                <div
+                  key={item.id}
+                  className="bg-card rounded-2xl p-4 md:p-6 shadow-soft border border-border/50 flex flex-col items-center text-center"
+                >
+                  {/* Icon */}
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/50 flex items-center justify-center mb-4">
+                    <item.icon className="w-12 h-12 md:w-14 md:h-14 text-primary" strokeWidth={1.5} />
+                  </div>
+                  
+                  {/* Title */}
+                  <h4 className="text-sm md:text-lg font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h4>
+                  
+                  {/* Price */}
+                  <p className="text-base md:text-xl font-bold text-primary mb-4">
+                    {item.price}
+                  </p>
 
-        {/* Price Categories */}
-        <div className="max-w-5xl mx-auto space-y-20">
-          {categories.map((category) => (
-            <div key={category.id} id={category.id} className="scroll-mt-32">
-              {/* Category Title */}
-              <h3 className="text-2xl font-bold text-foreground text-center mb-10">
-                {category.title}
-              </h3>
-              
-              {/* Items Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.items.map((item) => {
-                  const isSelected = selectedProduct === item.title;
-                  return (
+                  {/* Quantity Selector */}
+                  <div className="flex items-center gap-3">
                     <button
-                      key={item.id}
-                      onClick={() => handleProductClick(item.title)}
-                      className={`relative bg-card rounded-2xl p-8 shadow-soft border-2 transition-all duration-300 flex flex-col items-center text-center group cursor-pointer ${
-                        isSelected 
-                          ? 'border-primary shadow-medium scale-[1.02]' 
-                          : 'border-border/50 hover:shadow-medium hover:border-primary/40 hover:scale-[1.02]'
-                      }`}
+                      onClick={() => handleQuantityChange(item.id, -1)}
+                      className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent/70 hover:bg-accent flex items-center justify-center transition-colors duration-200"
+                      aria-label="Menge verringern"
                     >
-                      {/* Selected Checkmark */}
-                      {isSelected && (
-                        <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-primary flex items-center justify-center">
-                          <Check className="w-4 h-4 text-primary-foreground" strokeWidth={2.5} />
-                        </div>
-                      )}
-
-                      {/* Icon */}
-                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300 ${
-                        isSelected ? 'bg-primary/10' : 'bg-accent/50 group-hover:bg-primary/10'
-                      }`}>
-                        <item.icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
-                      </div>
-                      
-                      {/* Title */}
-                      <h4 className="text-lg font-semibold text-foreground mb-3">
-                        {item.title}
-                      </h4>
-                      
-                      {/* Price */}
-                      <p className="text-xl font-bold text-primary">
-                        {item.price}
-                      </p>
-
-                      {/* Hover hint */}
-                      <p className={`text-xs text-muted-foreground mt-4 transition-opacity duration-300 ${
-                        isSelected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
-                      }`}>
-                        {isSelected ? 'Ausgewählt' : 'Klicken zum Anfragen'}
-                      </p>
+                      <Minus className="w-4 h-4 md:w-5 md:h-5 text-foreground" strokeWidth={2} />
                     </button>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+                    <span className="w-8 text-center text-lg md:text-xl font-semibold text-foreground">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => handleQuantityChange(item.id, 1)}
+                      className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center transition-colors duration-200"
+                      aria-label="Menge erhöhen"
+                    >
+                      <Plus className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" strokeWidth={2} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Note */}
