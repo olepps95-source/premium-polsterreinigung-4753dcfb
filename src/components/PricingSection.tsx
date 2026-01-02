@@ -88,8 +88,8 @@ const priceItems = {
     { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
     { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
     { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa3SitzerIcon },
-    { id: 'ecksofa', title: 'Ecksofa', price: 'ab 130 €', icon: EcksofaIcon },
-    { id: 'ecksofa-gross', title: 'Ecksofa groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
+    { id: 'ecksofa', title: 'ECKCOUCH', price: 'ab 130 €', icon: EcksofaIcon },
+    { id: 'ecksofa-gross', title: 'ECKCOUCH, groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
   ],
   matratzen: [
     { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
@@ -242,7 +242,13 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
         <div className="max-w-3xl mx-auto mt-16">
           <div className="px-8 py-6 bg-accent/30 rounded-2xl border border-border/30 text-center">
             <p className="text-muted-foreground">
-              Endpreise hängen vom Verschmutzungsgrad ab.
+              Der finale Preis richtet sich nach Größe, Material und Verschmutzungsgrad der Möbel.
+            </p>
+            <p className="text-muted-foreground mt-2">
+              Transparenz steht bei uns an erster Stelle: Alle Details und mögliche Anpassungen besprechen wir selbstverständlich vorab mit Ihnen.
+            </p>
+            <p className="text-muted-foreground mt-2">
+              Unsere persönliche Beratung ist für Sie kostenfrei.
             </p>
           </div>
         </div>
