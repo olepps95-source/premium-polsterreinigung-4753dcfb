@@ -128,11 +128,13 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/50 flex items-center justify-center mb-4">
                     <item.icon 
                       className={`text-primary ${
-                        item.id === 'ecksofa-gross' 
-                          ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]' 
-                          : ['sofa-3-sitzer', 'autositz', 'kuechenstuhl', 'buerostuhl'].includes(item.id)
-                            ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]'
-                            : 'w-12 h-12 md:w-14 md:h-14'
+                        item.id === 'sofa-3-sitzer'
+                          ? 'w-[6.75rem] h-[6.75rem] md:w-[7.875rem] md:h-[7.875rem]'
+                          : item.id === 'ecksofa-gross' 
+                            ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]' 
+                            : ['autositz', 'kuechenstuhl', 'buerostuhl'].includes(item.id)
+                              ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]'
+                              : 'w-12 h-12 md:w-14 md:h-14'
                       }`} 
                       strokeWidth={1.5} 
                     />
