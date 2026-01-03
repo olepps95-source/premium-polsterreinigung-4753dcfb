@@ -10,6 +10,7 @@ import { ServiceAreaSection } from '@/components/ServiceAreaSection';
 import { CTASection, CTAFormHandle } from '@/components/CTASection';
 import { Footer } from '@/components/Footer';
 import { SelectedServicesProvider } from '@/contexts/SelectedServicesContext';
+import { StickyCtaButton } from '@/components/StickyCtaButton';
 
 const Index = () => {
   const ctaFormRef = useRef<CTAFormHandle>(null);
@@ -29,6 +30,7 @@ const Index = () => {
           <CTASection ref={ctaFormRef} />
         </main>
         <Footer />
+        <StickyCtaButton />
       </div>
     </SelectedServicesProvider>
   );
