@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
 import autositzIcon from '@/assets/autositz-icon.svg';
@@ -64,33 +65,25 @@ const BuerostuhlIcon = ({ className }: { className?: string; strokeWidth?: numbe
   <img src={buerostuhlIcon} alt="Bürostuhl" className={className} />
 );
 
-// All items merged into one unified list (order: Sofas, Matratzen, Stühle, Teppiche)
-const allPriceItems = [
-  // Sofas
-  { id: 'sessel', title: 'Sessel', price: 'ab 40 €', icon: Armchair },
-  { id: 'sofa-2', title: 'Sofa 2-Sitzer', price: 'ab 90 €', icon: Sofa },
-  { id: 'sofa-3', title: 'Sofa 3-Sitzer', price: 'ab 110 €', icon: Sofa3SitzerIcon },
-  { id: 'ecksofa', title: 'ECKCOUCH', price: 'ab 130 €', icon: EcksofaIcon },
-  { id: 'ecksofa-gross', title: 'ECKCOUCH, groß', price: 'ab 160 €', icon: EcksofaGrossIcon },
-  // Matratzen
-  { id: 'matratze-90', title: 'Matratze 90 cm', price: 'ab 60 €', icon: BedDouble },
-  { id: 'matratze-140', title: 'Matratze 140 cm', price: 'ab 80 €', icon: BedDouble },
-  { id: 'matratze-180', title: 'Matratze 180 cm', price: 'ab 100 €', icon: BedDouble },
-  // Stühle
-  { id: 'autositz', title: 'Autositz', price: 'ab 20 €', icon: AutositzIcon },
-  { id: 'kuechenstuhl', title: 'Küchenstuhl', price: 'ab 10 €', icon: KuechenstuhlIcon },
-  { id: 'buerostuhl', title: 'Bürostuhl', price: 'ab 15 €', icon: BuerostuhlIcon },
-  // Teppiche
-  { id: 'teppich-klein', title: 'Teppich (bis 10 m²)', price: '10 € pro m²', icon: Square },
-  { id: 'teppich-gross', title: 'Teppich (über 10 m²)', price: 'Preis nach Absprache', icon: LayoutGrid },
-];
+// Icon mapping - using any for flexibility with different icon component types
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number | string }>> = {
+  'sessel': Armchair as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'sofa-2': Sofa as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'sofa-3': Sofa3SitzerIcon,
+  'ecksofa': EcksofaIcon,
+  'ecksofa-gross': EcksofaGrossIcon,
+  'matratze-90': BedDouble as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'matratze-140': BedDouble as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'matratze-180': BedDouble as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'autositz': AutositzIcon,
+  'kuechenstuhl': KuechenstuhlIcon,
+  'buerostuhl': BuerostuhlIcon,
+  'teppich-klein': Square as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+  'teppich-gross': LayoutGrid as React.ComponentType<{ className?: string; strokeWidth?: number | string }>,
+};
 
-interface PricingSectionProps {
-  onProductSelect?: (product: string) => void;
-}
-
-export function PricingSection({ onProductSelect }: PricingSectionProps) {
-  const [quantities, setQuantities] = useState<Record<string, number>>({});
+export function PricingSection() {
+  const { quantities, setQuantities, priceItems, getTotalQuantity } = useSelectedServices();
 
   const handleQuantityChange = (itemId: string, delta: number) => {
     setQuantities(prev => {
@@ -99,6 +92,15 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
       return { ...prev, [itemId]: newValue };
     });
   };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('kontakt');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const totalQuantity = getTotalQuantity();
 
   return (
     <section id="preise" className="py-24 bg-secondary/30">
@@ -117,8 +119,9 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
         {/* Unified Price Grid */}
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {allPriceItems.map((item) => {
+            {priceItems.map((item) => {
               const quantity = quantities[item.id] || 0;
+              const IconComponent = iconMap[item.id];
               return (
                 <div
                   key={item.id}
@@ -126,18 +129,20 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
                 >
                   {/* Icon */}
                   <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-accent/50 flex items-center justify-center mb-4">
-                    <item.icon 
-                      className={`text-primary ${
-                        item.id === 'sofa-3-sitzer'
-                          ? 'w-[6.75rem] h-[6.75rem] md:w-[7.875rem] md:h-[7.875rem]'
-                          : item.id === 'ecksofa-gross' 
-                            ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]' 
-                            : ['autositz', 'kuechenstuhl', 'buerostuhl'].includes(item.id)
-                              ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]'
-                              : 'w-12 h-12 md:w-14 md:h-14'
-                      }`} 
-                      strokeWidth={1.5} 
-                    />
+                    {IconComponent && (
+                      <IconComponent 
+                        className={`text-primary ${
+                          item.id === 'sofa-3'
+                            ? 'w-[6.75rem] h-[6.75rem] md:w-[7.875rem] md:h-[7.875rem]'
+                            : item.id === 'ecksofa-gross' 
+                              ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]' 
+                              : ['autositz', 'kuechenstuhl', 'buerostuhl'].includes(item.id)
+                                ? 'w-[4.5rem] h-[4.5rem] md:w-[5.25rem] md:h-[5.25rem]'
+                                : 'w-12 h-12 md:w-14 md:h-14'
+                        }`} 
+                        strokeWidth={1.5} 
+                      />
+                    )}
                   </div>
                   
                   {/* Title */}
@@ -175,6 +180,21 @@ export function PricingSection({ onProductSelect }: PricingSectionProps) {
             })}
           </div>
         </div>
+
+        {/* Continue Button - only shown when items selected */}
+        {totalQuantity > 0 && (
+          <div className="max-w-md mx-auto mt-10">
+            <Button
+              onClick={scrollToContact}
+              variant="cta"
+              size="xl"
+              className="w-full"
+            >
+              Weiter zur Anfrage
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </div>
+        )}
 
         {/* Note */}
         <div className="max-w-3xl mx-auto mt-16">

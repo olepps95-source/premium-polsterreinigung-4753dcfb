@@ -9,31 +9,28 @@ import { ReviewsSection } from '@/components/ReviewsSection';
 import { ServiceAreaSection } from '@/components/ServiceAreaSection';
 import { CTASection, CTAFormHandle } from '@/components/CTASection';
 import { Footer } from '@/components/Footer';
+import { SelectedServicesProvider } from '@/contexts/SelectedServicesContext';
 
 const Index = () => {
   const ctaFormRef = useRef<CTAFormHandle>(null);
 
-  const handleProductSelect = (product: string) => {
-    if (ctaFormRef.current) {
-      ctaFormRef.current.setSelectedProduct(product);
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <PricingSection onProductSelect={handleProductSelect} />
-        <BeforeAfterSection />
-        <ReviewsSection />
-        <ServiceAreaSection />
-        <CTASection ref={ctaFormRef} />
-      </main>
-      <Footer />
-    </div>
+    <SelectedServicesProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <HeroSection />
+          <AboutSection />
+          <ServicesSection />
+          <PricingSection />
+          <BeforeAfterSection />
+          <ReviewsSection />
+          <ServiceAreaSection />
+          <CTASection ref={ctaFormRef} />
+        </main>
+        <Footer />
+      </div>
+    </SelectedServicesProvider>
   );
 };
 
