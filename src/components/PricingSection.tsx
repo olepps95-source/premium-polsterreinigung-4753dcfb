@@ -1,5 +1,5 @@
-import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus } from 'lucide-react';
-
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
 import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
@@ -93,6 +93,12 @@ export function PricingSection() {
     });
   };
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('kontakt');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const totalQuantity = getTotalQuantity();
 
@@ -175,8 +181,20 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Spacer for sticky button */}
-        {totalQuantity > 0 && <div className="h-20" />}
+        {/* Continue Button - only shown when items selected */}
+        {totalQuantity > 0 && (
+          <div className="max-w-md mx-auto mt-10">
+            <Button
+              onClick={scrollToContact}
+              variant="cta"
+              size="xl"
+              className="w-full"
+            >
+              Weiter zur Anfrage
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </div>
+        )}
 
         {/* Note */}
         <div className="max-w-3xl mx-auto mt-16">
