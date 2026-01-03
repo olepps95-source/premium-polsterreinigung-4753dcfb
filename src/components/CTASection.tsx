@@ -6,6 +6,16 @@ import { Label } from '@/components/ui/label';
 import { Phone, MessageCircle, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { trackLead, trackContact } from '@/lib/meta-pixel';
+import { useSelectedServices } from '@/contexts/SelectedServicesContext';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableFooter,
+} from '@/components/ui/table';
 
 export interface CTAFormHandle {
   setSelectedProduct: (product: string) => void;
@@ -18,20 +28,36 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     email: '',
     phone: '',
     appointmentDate: '',
-    product: '',
     message: '',
   });
   const { toast } = useToast();
+  const { getSelectedServices, getTotalQuantity, getTotalPrice, clearSelections } = useSelectedServices();
+
+  const selectedServices = getSelectedServices();
+  const totalQuantity = getTotalQuantity();
+  const totalPrice = getTotalPrice();
 
   useImperativeHandle(ref, () => ({
-    setSelectedProduct: (product: string) => {
-      setFormData(prev => ({ ...prev, product }));
+    setSelectedProduct: (_product: string) => {
+      // Legacy method - no longer needed with new system
     },
   }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const formatServicesForEmail = () => {
+    if (selectedServices.length === 0) return '';
+    
+    let text = '\n\n--- Ausgewählte Leistungen ---\n';
+    selectedServices.forEach(service => {
+      const rowTotal = service.quantity * service.numericPrice;
+      text += `${service.title}: ${service.quantity}x à ${service.price} = ${rowTotal > 0 ? `${rowTotal} €` : 'Preis nach Absprache'}\n`;
+    });
+    text += `\nGesamt: ${totalQuantity} Stück, ${totalPrice > 0 ? `ab ${totalPrice} €` : 'Preis nach Absprache'}`;
+    return text;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -45,23 +71,41 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
       return;
     }
 
+    // Build email body with services
+    const servicesText = formatServicesForEmail();
+    const emailBody = `
+Name: ${formData.name}
+Stadt & PLZ: ${formData.location}
+E-Mail: ${formData.email}
+Telefon: ${formData.phone}
+Wunschtermin: ${formData.appointmentDate}
+Nachricht: ${formData.message}
+${servicesText}
+    `.trim();
+
+    // Create mailto link
+    const subject = encodeURIComponent('Neue Reinigungsanfrage – ReinWerk');
+    const body = encodeURIComponent(emailBody);
+    window.location.href = `mailto:info@reinwerk-service.de?subject=${subject}&body=${body}`;
+
     toast({
-      title: "Anfrage gesendet!",
-      description: "Wir melden uns schnellstmöglich bei Ihnen.",
+      title: "Anfrage wird vorbereitet!",
+      description: "Ihr E-Mail-Programm wird geöffnet.",
     });
 
     // Track Lead event for Meta Pixel (only fires if consent granted)
     trackLead();
 
+    // Clear form and selections
     setFormData({
       name: '',
       location: '',
       email: '',
       phone: '',
       appointmentDate: '',
-      product: '',
       message: '',
     });
+    clearSelections();
   };
 
   return (
@@ -86,6 +130,47 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
                 Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.
               </p>
             </div>
+
+            {/* Summary Table - only shown when services selected */}
+            {selectedServices.length > 0 && (
+              <div className="mb-8 overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow className="border-border/50">
+                      <TableHead className="text-foreground font-semibold">Möbelstück</TableHead>
+                      <TableHead className="text-foreground font-semibold text-center">Anzahl</TableHead>
+                      <TableHead className="text-foreground font-semibold text-right">Einzelpreis</TableHead>
+                      <TableHead className="text-foreground font-semibold text-right">Gesamtpreis</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {selectedServices.map((service) => {
+                      const rowTotal = service.quantity * service.numericPrice;
+                      return (
+                        <TableRow key={service.id} className="border-border/50">
+                          <TableCell className="text-foreground font-medium">{service.title}</TableCell>
+                          <TableCell className="text-foreground text-center">{service.quantity}</TableCell>
+                          <TableCell className="text-foreground text-right">{service.price}</TableCell>
+                          <TableCell className="text-foreground text-right font-medium">
+                            {rowTotal > 0 ? `ab ${rowTotal} €` : 'Nach Absprache'}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                  <TableFooter className="bg-accent/30">
+                    <TableRow className="border-border/50">
+                      <TableCell className="text-foreground font-bold">Gesamt</TableCell>
+                      <TableCell className="text-foreground font-bold text-center">{totalQuantity}</TableCell>
+                      <TableCell></TableCell>
+                      <TableCell className="text-primary font-bold text-right">
+                        {totalPrice > 0 ? `ab ${totalPrice} €` : 'Nach Absprache'}
+                      </TableCell>
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-2">
@@ -159,21 +244,6 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
                   value={formData.appointmentDate}
                   onChange={handleChange}
                   placeholder="12.03.2025 15:30"
-                  className="h-12 bg-card border-border/50 focus:border-primary"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="product" className="text-foreground font-medium">
-                  Ausgewähltes Produkt
-                </Label>
-                <Input
-                  id="product"
-                  name="product"
-                  type="text"
-                  value={formData.product}
-                  onChange={handleChange}
-                  placeholder="Wählen Sie ein Produkt aus der Preisliste"
                   className="h-12 bg-card border-border/50 focus:border-primary"
                 />
               </div>
