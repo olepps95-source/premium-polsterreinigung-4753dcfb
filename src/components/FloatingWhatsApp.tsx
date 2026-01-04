@@ -15,7 +15,7 @@ export const FloatingWhatsApp = () => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-[calc(env(safe-area-inset-bottom,16px)+16px)] right-4 z-50">
       {/* Tooltip */}
       <div 
         className={`absolute bottom-full right-0 mb-2 px-3 py-2 bg-anthracite text-white text-sm rounded-lg shadow-lg whitespace-nowrap transition-all duration-200 ${
