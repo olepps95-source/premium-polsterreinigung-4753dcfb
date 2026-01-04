@@ -12,13 +12,11 @@ import NotFound from "./pages/NotFound";
 import { CookieBanner } from "./components/CookieBanner";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import { MetaPixelProvider } from "./components/MetaPixelProvider";
-import { SelectedServicesProvider } from "./contexts/SelectedServicesContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <SelectedServicesProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -37,7 +35,6 @@ const App = () => (
         <FloatingWhatsApp />
       </BrowserRouter>
     </TooltipProvider>
-    </SelectedServicesProvider>
   </QueryClientProvider>
 );
 
