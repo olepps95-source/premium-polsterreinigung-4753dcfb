@@ -17,13 +17,13 @@ export const FloatingWhatsApp = () => {
   const { getTotalQuantity } = useSelectedServices();
   const hasSelection = getTotalQuantity() > 0;
 
-  // When CTA is visible, move WhatsApp button up to avoid overlap
+  // When CTA is visible, move WhatsApp button up to avoid overlap (mobile: higher, desktop: unchanged behavior)
   const bottomPosition = hasSelection 
-    ? 'bottom-[calc(5rem+env(safe-area-inset-bottom,24px))] md:bottom-24' 
+    ? 'bottom-28 md:bottom-6' 
     : 'bottom-6';
 
   return (
-    <div className={`fixed ${bottomPosition} right-6 z-50 transition-all duration-300`}>
+    <div className={`fixed ${bottomPosition} right-4 md:right-6 z-50 transition-all duration-300`}>
       {/* Tooltip */}
       <div 
         className={`absolute bottom-full right-0 mb-2 px-3 py-2 bg-anthracite text-white text-sm rounded-lg shadow-lg whitespace-nowrap transition-all duration-200 ${
