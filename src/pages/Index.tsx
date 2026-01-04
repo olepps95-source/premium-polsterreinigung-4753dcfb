@@ -9,15 +9,13 @@ import { ReviewsSection } from '@/components/ReviewsSection';
 import { ServiceAreaSection } from '@/components/ServiceAreaSection';
 import { CTASection, CTAFormHandle } from '@/components/CTASection';
 import { Footer } from '@/components/Footer';
-import { SelectedServicesProvider } from '@/contexts/SelectedServicesContext';
 import { StickyCtaButton } from '@/components/StickyCtaButton';
 
 const Index = () => {
   const ctaFormRef = useRef<CTAFormHandle>(null);
 
   return (
-    <SelectedServicesProvider>
-      <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
         <Header />
         <main>
           <HeroSection />
@@ -29,10 +27,9 @@ const Index = () => {
           <ServiceAreaSection />
           <CTASection ref={ctaFormRef} />
         </main>
-        <Footer />
-        <StickyCtaButton />
-      </div>
-    </SelectedServicesProvider>
+      <Footer />
+      <StickyCtaButton />
+    </div>
   );
 };
 
