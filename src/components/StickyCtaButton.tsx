@@ -41,7 +41,7 @@ export function StickyCtaButton() {
   if (!shouldShow) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 p-4 pb-[calc(env(safe-area-inset-bottom,16px)+80px)] bg-gradient-to-t from-background via-background to-transparent pointer-events-none">
+    <div className="fixed bottom-0 left-0 right-0 z-40 p-4 pb-[calc(env(safe-area-inset-bottom,16px)+16px)] bg-gradient-to-t from-background via-background to-transparent pointer-events-none">
       <div className="max-w-md mx-auto pointer-events-auto">
         <Button
           onClick={scrollToContact}
