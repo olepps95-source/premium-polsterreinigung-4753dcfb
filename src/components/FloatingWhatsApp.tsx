@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { trackContact } from '@/lib/meta-pixel';
+import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -13,9 +14,11 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const FloatingWhatsApp = () => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const { getTotalQuantity } = useSelectedServices();
+  const hasSelection = getTotalQuantity() > 0;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className={`fixed right-4 md:right-6 z-50 transition-all duration-300 ${hasSelection ? 'bottom-24 md:bottom-6' : 'bottom-6'}`}>
       {/* Tooltip */}
       <div 
         className={`absolute bottom-full right-0 mb-2 px-3 py-2 bg-anthracite text-white text-sm rounded-lg shadow-lg whitespace-nowrap transition-all duration-200 ${
