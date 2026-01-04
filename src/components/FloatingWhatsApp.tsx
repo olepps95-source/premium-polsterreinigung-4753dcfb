@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { trackContact } from '@/lib/meta-pixel';
-import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg 
@@ -14,10 +13,6 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 
 export const FloatingWhatsApp = () => {
   const [showTooltip, setShowTooltip] = useState(false);
-  const { getTotalQuantity } = useSelectedServices();
-  
-  // Hide WhatsApp button when services are selected (CTA takes priority)
-  if (getTotalQuantity() > 0) return null;
 
   return (
     <div className="fixed bottom-[calc(env(safe-area-inset-bottom,16px)+16px)] right-4 z-50">
