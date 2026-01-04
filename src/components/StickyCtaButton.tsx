@@ -23,7 +23,7 @@ export function StickyCtaButton() {
   if (totalQuantity === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-40 p-4 pb-6 md:pb-5 bg-gradient-to-t from-background via-background to-transparent pointer-events-none safe-area-bottom">
+    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pb-[env(safe-area-inset-bottom,16px)] bg-gradient-to-t from-background via-background to-transparent pointer-events-none">
       <div className="max-w-md mx-auto pointer-events-auto">
         <Button
           onClick={scrollToContact}
