@@ -1,4 +1,9 @@
 import { Star, Quote } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import avatarMaria from '@/assets/avatar-maria.jpg';
+import avatarThomas from '@/assets/avatar-thomas.jpg';
+import avatarAnna from '@/assets/avatar-anna.jpg';
+import avatarMichael from '@/assets/avatar-michael.jpg';
 
 const reviews = [
   {
@@ -6,24 +11,28 @@ const reviews = [
     location: 'Dresden',
     rating: 5,
     text: 'Unser Sofa sieht aus wie neu! Sehr professioneller Service, pünktlich und sauber gearbeitet. Kann ich nur weiterempfehlen!',
+    avatar: avatarMaria,
   },
   {
     name: 'Thomas Müller',
     location: 'Leipzig',
     rating: 5,
     text: 'Nach der Reinigung unserer Matratze schlafe ich endlich wieder gut. Die Flecken sind komplett verschwunden. Top Arbeit!',
+    avatar: avatarThomas,
   },
   {
     name: 'Anna Weber',
     location: 'Chemnitz',
     rating: 5,
     text: 'Schnell, freundlich und ein fantastisches Ergebnis. Der Kaffeefleck, den ich für unrettbar hielt, ist Geschichte.',
+    avatar: avatarAnna,
   },
   {
     name: 'Michael Hoffmann',
     location: 'Zwickau',
     rating: 5,
     text: 'Super netter Kontakt über WhatsApp, faire Preise und perfektes Ergebnis. Was will man mehr?',
+    avatar: avatarMichael,
   },
 ];
 
@@ -55,11 +64,12 @@ export function ReviewsSection() {
               <p className="text-foreground mb-6 leading-relaxed">"{review.text}"</p>
               
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center">
-                  <span className="text-lg font-semibold text-primary">
+                <Avatar className="w-12 h-12">
+                  <AvatarImage src={review.avatar} alt={review.name} className="object-cover" />
+                  <AvatarFallback className="bg-accent text-primary text-lg font-semibold">
                     {review.name.charAt(0)}
-                  </span>
-                </div>
+                  </AvatarFallback>
+                </Avatar>
                 <div>
                   <p className="font-semibold text-foreground">{review.name}</p>
                   <p className="text-sm text-muted-foreground">{review.location}</p>
