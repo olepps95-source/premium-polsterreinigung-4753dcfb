@@ -1,27 +1,10 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
-import { useState, useEffect } from 'react';
 
 export function StickyCtaButton() {
   const { getTotalQuantity } = useSelectedServices();
-  const totalQuantity = getTotalQuantity();
-  const [isFormVisible, setIsFormVisible] = useState(false);
-
-  useEffect(() => {
-    const contactSection = document.getElementById('kontakt');
-    if (!contactSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFormVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(contactSection);
-    return () => observer.disconnect();
-  }, []);
+  const hasSelectedServices = getTotalQuantity() > 0;
 
   const scrollToContact = () => {
     const contactSection = document.getElementById('kontakt');
@@ -36,9 +19,7 @@ export function StickyCtaButton() {
     }
   };
 
-  const shouldShow = totalQuantity > 0 && !isFormVisible;
-
-  if (!shouldShow) return null;
+  if (!hasSelectedServices) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 p-4 pb-[calc(env(safe-area-inset-bottom,16px)+80px)] bg-gradient-to-t from-background via-background to-transparent pointer-events-none">
