@@ -12,29 +12,32 @@ import NotFound from "./pages/NotFound";
 import { CookieBanner } from "./components/CookieBanner";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import { MetaPixelProvider } from "./components/MetaPixelProvider";
+import { SelectedServicesProvider } from "./contexts/SelectedServicesContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <MetaPixelProvider />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/agb" element={<AGB />} />
-          <Route path="/widerrufsbelehrung" element={<Widerrufsbelehrung />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <CookieBanner />
-        <FloatingWhatsApp />
-      </BrowserRouter>
-    </TooltipProvider>
+    <SelectedServicesProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <MetaPixelProvider />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/agb" element={<AGB />} />
+            <Route path="/widerrufsbelehrung" element={<Widerrufsbelehrung />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <CookieBanner />
+          <FloatingWhatsApp />
+        </BrowserRouter>
+      </TooltipProvider>
+    </SelectedServicesProvider>
   </QueryClientProvider>
 );
 
