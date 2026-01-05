@@ -1,4 +1,4 @@
-import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus, Info } from 'lucide-react';
 
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
@@ -178,18 +178,15 @@ export function PricingSection() {
         {/* Spacer for sticky button */}
         {totalQuantity > 0 && <div className="h-20" />}
 
-        {/* Note */}
-        <div className="max-w-3xl mx-auto mt-16">
-          <div className="px-8 py-6 bg-accent/30 rounded-2xl border border-border/30 text-center">
-            <p className="text-muted-foreground">
-              Der finale Preis richtet sich nach Größe, Material und Verschmutzungsgrad der Möbel.
-            </p>
-            <p className="text-muted-foreground mt-2">
-              Transparenz steht bei uns an erster Stelle: Alle Details und mögliche Anpassungen besprechen wir selbstverständlich vorab mit Ihnen.
-            </p>
-            <p className="text-muted-foreground mt-2">
-              Unsere persönliche Beratung ist für Sie kostenfrei.
-            </p>
+        {/* Info Hint */}
+        <div className="max-w-4xl mx-auto mt-8">
+          <div className="flex items-start gap-3 px-4 py-3 bg-muted/50 rounded-lg">
+            <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-muted-foreground leading-relaxed">
+              <span className="font-medium text-foreground">Hinweis:</span>{' '}
+              Der finale Preis richtet sich nach Größe, Material und Verschmutzungsgrad. 
+              Alle Details besprechen wir transparent vorab – unsere Beratung ist kostenfrei.
+            </div>
           </div>
         </div>
       </div>
