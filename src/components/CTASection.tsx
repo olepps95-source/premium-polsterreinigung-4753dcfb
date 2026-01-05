@@ -284,7 +284,7 @@ ${servicesText}
 
           {/* WhatsApp & Phone Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button variant="hero" size="xl" className="bg-primary-foreground text-foreground hover:bg-primary-foreground/90" asChild>
+            <Button variant="hero" size="xl" className="bg-[#25D366] text-white hover:bg-[#25D366]" asChild>
               <a 
                 href="https://wa.me/message/5SVXIYHUNM7LN1" 
                 target="_blank" 
