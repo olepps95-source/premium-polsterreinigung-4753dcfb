@@ -1,4 +1,5 @@
 import { Phone, Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
+import { trackContact } from '@/lib/meta-pixel';
 
 // TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -41,6 +42,7 @@ export function Footer() {
                 href="https://wa.me/message/5SVXIYHUNM7LN1"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackContact()}
                 className="w-10 h-10 rounded-full bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:shadow-soft transition-all"
                 aria-label="WhatsApp"
               >
