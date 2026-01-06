@@ -24,10 +24,8 @@ export interface CTAFormHandle {
 export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
   const [formData, setFormData] = useState({
     name: '',
-    location: '',
     email: '',
     phone: '',
-    appointmentDate: '',
     message: '',
   });
   const { toast } = useToast();
@@ -75,10 +73,8 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     const servicesText = formatServicesForEmail();
     const emailBody = `
 Name: ${formData.name}
-Stadt & PLZ: ${formData.location}
 E-Mail: ${formData.email}
 Telefon: ${formData.phone}
-Wunschtermin: ${formData.appointmentDate}
 Nachricht: ${formData.message}
 ${servicesText}
     `.trim();
@@ -99,10 +95,8 @@ ${servicesText}
     // Clear form and selections
     setFormData({
       name: '',
-      location: '',
       email: '',
       phone: '',
-      appointmentDate: '',
       message: '',
     });
     clearSelections();
@@ -199,21 +193,6 @@ ${servicesText}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="location" className="text-foreground font-medium">
-                  Stadt & Postleitzahl
-                </Label>
-                <Input
-                  id="location"
-                  name="location"
-                  type="text"
-                  value={formData.location}
-                  onChange={handleChange}
-                  placeholder="z.B. Hamburg 20095"
-                  className="h-12 bg-card border-border/50 focus:border-primary"
-                />
-              </div>
-
-              <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground font-medium">
                   E-Mail <span className="text-primary">*</span>
                 </Label>
@@ -239,21 +218,6 @@ ${servicesText}
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="01636986317"
-                  className="h-12 bg-card border-border/50 focus:border-primary"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="appointmentDate" className="text-foreground font-medium">
-                  Wunschtermin (TT.MM.JJJJ HH:MM)
-                </Label>
-                <Input
-                  id="appointmentDate"
-                  name="appointmentDate"
-                  type="text"
-                  value={formData.appointmentDate}
-                  onChange={handleChange}
-                  placeholder="12.03.2025 15:30"
                   className="h-12 bg-card border-border/50 focus:border-primary"
                 />
               </div>
