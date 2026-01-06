@@ -30,8 +30,9 @@ export function HeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Wir bringen Ihre Möbel zum Strahlen – schonend, gründlich und umweltfreundlich. 
-            Direkt bei Ihnen vor Ort in Chemnitz, Dresden, Leipzig und Umgebung.
+            Hygienisch sauber. Sicher für Kinder & Haustiere.
+            <br />
+            Noch am selben Tag wieder nutzbar dank Express-Trocknung.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
