@@ -58,7 +58,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     return text;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.email || !formData.phone) {
@@ -69,37 +69,63 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
       return;
     }
 
-    // Build email body with services
-    const servicesText = formatServicesForEmail();
-    const emailBody = `
-Name: ${formData.name}
-E-Mail: ${formData.email}
-Telefon: ${formData.phone}
-Nachricht: ${formData.message}
-${servicesText}
-    `.trim();
+    // Build payload with form data and selected services
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      services: selectedServices.map(service => ({
+        title: service.title,
+        quantity: service.quantity,
+        price: service.price,
+        numericPrice: service.numericPrice,
+        rowTotal: service.quantity * service.numericPrice,
+      })),
+      totalQuantity,
+      totalPrice,
+    };
 
-    // Create mailto link
-    const subject = encodeURIComponent('Neue Reinigungsanfrage – ReinWerk');
-    const body = encodeURIComponent(emailBody);
-    window.location.href = `mailto:info@reinwerk-service.de?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch('https://hook.eu1.make.com/6qrngo5mu6wekvqwj8eacelu9oefi9sv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    toast({
-      title: "Anfrage wird vorbereitet!",
-      description: "Ihr E-Mail-Programm wird geöffnet.",
-    });
+      if (response.ok) {
+        toast({
+          title: "Anfrage erfolgreich gesendet!",
+          description: "Wir melden uns schnellstmöglich bei Ihnen.",
+        });
 
-    // Track Lead event for Meta Pixel (only fires if consent granted)
-    trackLead();
+        // Track Lead event for Meta Pixel (only fires if consent granted)
+        trackLead();
 
-    // Clear form and selections
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
-    clearSelections();
+        // Clear form and selections
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+        clearSelections();
+      } else {
+        toast({
+          title: "Fehler beim Senden",
+          description: "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Fehler beim Senden",
+        description: "Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
