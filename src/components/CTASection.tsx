@@ -46,20 +46,29 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const formatServicesForEmail = () => {
+  // Generate human-readable summary of selected services
+  const formatSelectedServicesText = (): string => {
     if (selectedServices.length === 0) return '';
     
-    let text = '\n\n--- Ausgewählte Leistungen ---\n';
-    selectedServices.forEach(service => {
+    return selectedServices.map(service => {
       const rowTotal = service.quantity * service.numericPrice;
-      text += `${service.title}: ${service.quantity}x à ${service.price} = ${rowTotal > 0 ? `${rowTotal} €` : 'Preis nach Absprache'}\n`;
-    });
-    text += `\nGesamt: ${totalQuantity} Stück, ${totalPrice > 0 ? `ab ${totalPrice} €` : 'Preis nach Absprache'}`;
-    return text;
+      const priceText = rowTotal > 0 ? `${rowTotal} €` : 'Preis nach Absprache';
+      return `${service.title} ×${service.quantity} – ${priceText}`;
+    }).join('\n');
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if at least one service is selected
+    if (selectedServices.length === 0) {
+      toast({
+        title: "Bitte wählen Sie mindestens eine Leistung aus",
+        description: "Scrollen Sie nach oben zur Preisliste und wählen Sie Ihre gewünschten Leistungen.",
+        variant: "destructive",
+      });
+      return;
+    }
     
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
@@ -69,12 +78,16 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
       return;
     }
 
+    // Generate human-readable selected services text
+    const selectedServicesText = formatSelectedServicesText();
+
     // Build payload with form data and selected services
     const payload = {
       name: formData.name,
       email: formData.email,
       phone: formData.phone,
       message: formData.message,
+      selected_services: selectedServicesText,
       services: selectedServices.map(service => ({
         title: service.title,
         quantity: service.quantity,
