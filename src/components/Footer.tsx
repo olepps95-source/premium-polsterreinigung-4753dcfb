@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
 import { trackContact } from '@/lib/meta-pixel';
 
 // TikTok icon component
@@ -65,10 +65,9 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Kontakt</h4>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+4901636986317" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">
-                  <Phone className="w-4 h-4" />
+                <span className="flex items-center gap-3 text-muted-foreground">
                   01636986317
-                </a>
+                </span>
               </li>
               <li>
                 <a href="mailto:info@reinwerk-service.de" className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors">

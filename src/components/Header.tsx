@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import reinwerkLogo from '@/assets/reinwerk-logo.jpg';
 
@@ -57,10 +57,6 @@ export function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="tel:+4901636986317" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
-            <Phone className="w-4 h-4" />
-            <span>01636986317</span>
-          </a>
           <Button variant="hero" size="sm" asChild>
             <a href="#kontakt">Termin buchen</a>
           </Button>
@@ -91,10 +87,6 @@ export function Header() {
               </a>
             ))}
             <div className="pt-4 border-t border-border flex flex-col gap-3">
-              <a href="tel:+4901636986317" className="flex items-center gap-2 text-foreground">
-                <Phone className="w-5 h-5 text-primary" />
-                <span>01636986317</span>
-              </a>
               <Button variant="hero" className="w-full" asChild>
                 <a href="#kontakt">Termin buchen</a>
               </Button>
