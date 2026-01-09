@@ -106,7 +106,13 @@ export function PricingSection() {
             Transparente Preise
           </h2>
           <p className="text-lg text-muted-foreground">
-            Faire und transparente Preisgestaltung ohne versteckte Kosten. Klicken Sie auf ein Produkt, um eine Anfrage zu stellen.
+            Jede Reinigung ist so individuell wie Ihr Zuhause.
+            <br />
+            Der Preis richtet sich nach Größe, Material und Verschmutzungsgrad Ihrer Möbel.
+            <br /><br />
+            Vor Beginn erhalten Sie eine kostenlose, transparente Beratung
+            <br />
+            und erfahren den exakten Preis im Voraus – unverbindlich, ehrlich und ohne versteckte Kosten.
           </p>
         </div>
 
