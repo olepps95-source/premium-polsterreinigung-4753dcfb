@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Phone, MessageCircle, Send, Info } from 'lucide-react';
+import { MessageCircle, Send, Info } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { trackLead, trackContact } from '@/lib/meta-pixel';
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
@@ -295,8 +295,8 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
             </form>
           </div>
 
-          {/* WhatsApp & Phone Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          {/* WhatsApp Button */}
+          <div className="flex justify-center mb-12">
             <Button variant="hero" size="xl" className="bg-[#25D366] text-white hover:bg-[#25D366]" asChild>
               <a 
                 href="https://api.whatsapp.com/message/5SVXIYHUNM7LN1?autoload=1&app_absent=0" 
@@ -306,12 +306,6 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
               >
                 <MessageCircle className="w-5 h-5" />
                 WhatsApp schreiben
-              </a>
-            </Button>
-            <Button variant="heroOutline" size="xl" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-foreground" asChild>
-              <a href="tel:+4901636986317">
-                <Phone className="w-5 h-5" />
-                01636986317
               </a>
             </Button>
           </div>
