@@ -27,9 +27,9 @@ export function HeroSection() {
         <div className="max-w-2xl">
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            Professionelle{' '}
+            Premium{' '}
             <span className="text-primary">Polsterreinigung</span>{' '}
-            für Ihr Zuhause
+            direkt bei Ihnen vor Ort
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
