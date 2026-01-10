@@ -25,11 +25,6 @@ export function HeroSection() {
 
       <div className="container relative z-10 py-20 md:py-32">
         <div className="max-w-2xl">
-          {/* Trust Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/80 backdrop-blur-sm text-accent-foreground text-sm font-medium mb-8 animate-fade-up">
-            <Shield className="w-4 h-4" />
-            <span>Sicher für Kinder & Haustiere</span>
-          </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
             Professionelle{' '}
