@@ -1,4 +1,5 @@
-import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus } from 'lucide-react';
+import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
@@ -178,6 +179,16 @@ export function PricingSection() {
                 </div>
               );
             })}
+          </div>
+
+          {/* CTA Button */}
+          <div className="flex justify-center mt-10">
+            <Button variant="cta" size="xl" asChild>
+              <a href="#kontakt">
+                Kostenlose Preisanfrage
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </Button>
           </div>
         </div>
 
