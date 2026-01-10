@@ -1,4 +1,5 @@
 import { Mail, MapPin, Instagram, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { trackContact } from '@/lib/meta-pixel';
 
 // TikTok icon component
@@ -89,24 +90,24 @@ export function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Rechtliches</h4>
             <ul className="space-y-3">
               <li>
-                <a href="/impressum" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/impressum" className="text-muted-foreground hover:text-primary transition-colors">
                   Impressum
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/datenschutz" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/datenschutz" className="text-muted-foreground hover:text-primary transition-colors">
                   Datenschutzerklärung
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/agb" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/agb" className="text-muted-foreground hover:text-primary transition-colors">
                   AGB
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/widerrufsbelehrung" className="text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/widerrufsbelehrung" className="text-muted-foreground hover:text-primary transition-colors">
                   Widerrufsbelehrung
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
