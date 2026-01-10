@@ -1,16 +1,24 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Sparkles } from 'lucide-react';
 import heroImage from '@/assets/hero-living-room.jpg';
+import heroMobileImage from '@/assets/hero-mobile.png';
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
+        {/* Mobile image */}
+        <img
+          src={heroMobileImage}
+          alt="Professionelle Polsterreinigung mit Kärcher Gerät"
+          className="w-full h-full object-cover object-top md:hidden"
+        />
+        {/* Desktop/Tablet image */}
         <img
           src={heroImage}
           alt="Professionell gereinigtes Sofa in modernem Wohnzimmer"
-          className="w-full h-full object-cover"
+          className="hidden md:block w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
       </div>
