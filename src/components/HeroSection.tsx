@@ -33,9 +33,9 @@ export function HeroSection() {
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-xl animate-fade-up" style={{ animationDelay: '0.2s' }}>
-            Hygienisch sauber. Sicher für Kinder & Haustiere.
+            Hygienisch sauber, schonend gereinigt und unbedenklich für Kinder & Haustiere.
             <br />
-            Noch am selben Tag wieder nutzbar dank Express-Trocknung.
+            Dank Express-Trocknung noch am selben Tag wieder nutzbar.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
