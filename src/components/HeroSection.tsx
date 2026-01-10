@@ -1,18 +1,28 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Sparkles } from 'lucide-react';
 import heroImage from '@/assets/hero-living-room.jpg';
+import heroMobileImage from '@/assets/hero-mobile.png';
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image - Desktop/Tablet */}
+      <div className="absolute inset-0 z-0 hidden md:block">
         <img
           src={heroImage}
           alt="Professionell gereinigtes Sofa in modernem Wohnzimmer"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
+      </div>
+      {/* Background Image - Mobile */}
+      <div className="absolute inset-0 z-0 block md:hidden">
+        <img
+          src={heroMobileImage}
+          alt="ReinWerk Polsterreinigung Experte bei der Arbeit"
+          className="w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/40" />
       </div>
 
       <div className="container relative z-10 py-20 md:py-32">
