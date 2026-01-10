@@ -38,7 +38,7 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
             <Button variant="hero" size="lg" asChild>
               <a href="#kontakt">
-                Jetzt Termin sichern
+                Jetzt unverbindlich anfragen
                 <ArrowRight className="w-5 h-5" />
               </a>
             </Button>

@@ -28,6 +28,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
     phone: '',
     message: '',
   });
+  const [validationError, setValidationError] = useState<string | null>(null);
   const { toast } = useToast();
   const { getSelectedServices, getTotalQuantity, getTotalPrice, clearSelections } = useSelectedServices();
 
@@ -59,22 +60,16 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setValidationError(null);
     
-    // Check if at least one service is selected
-    if (selectedServices.length === 0) {
-      toast({
-        title: "Bitte wählen Sie mindestens eine Leistung aus",
-        description: "Scrollen Sie nach oben zur Preisliste und wählen Sie Ihre gewünschten Leistungen.",
-        variant: "destructive",
-      });
+    // Validate required fields: Name is required, Email OR Phone must be filled
+    if (!formData.name.trim()) {
+      setValidationError('Bitte füllen Sie die Kontaktdaten aus, damit wir Sie erreichen können.');
       return;
     }
     
-    if (!formData.name || !formData.email || !formData.phone) {
-      toast({
-        title: "Bitte füllen Sie alle Pflichtfelder aus",
-        variant: "destructive",
-      });
+    if (!formData.email.trim() && !formData.phone.trim()) {
+      setValidationError('Bitte füllen Sie die Kontaktdaten aus, damit wir Sie erreichen können.');
       return;
     }
 
@@ -215,7 +210,13 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+              {/* Validation Error Message */}
+              {validationError && (
+                <div className="p-4 bg-destructive/10 border border-destructive/30 rounded-lg">
+                  <p className="text-sm text-destructive font-medium">{validationError}</p>
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-foreground font-medium">
                   Name <span className="text-primary">*</span>
@@ -233,7 +234,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
 
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-foreground font-medium">
-                  E-Mail <span className="text-primary">*</span>
+                  E-Mail <span className="text-muted-foreground text-xs">(oder Telefon)</span>
                 </Label>
                 <Input
                   id="email"
@@ -248,7 +249,7 @@ export const CTASection = forwardRef<CTAFormHandle>((_, ref) => {
 
               <div className="space-y-2">
                 <Label htmlFor="phone" className="text-foreground font-medium">
-                  Telefonnummer <span className="text-primary">*</span>
+                  Telefonnummer <span className="text-muted-foreground text-xs">(oder E-Mail)</span>
                 </Label>
                 <Input
                   id="phone"
