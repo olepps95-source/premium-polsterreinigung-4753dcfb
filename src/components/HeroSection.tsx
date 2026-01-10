@@ -5,7 +5,7 @@ import heroMobileImage from '@/assets/hero-mobile.png';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center md:items-center pt-32 md:pt-20 pb-safe overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Mobile image */}
@@ -23,7 +23,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
       </div>
 
-      <div className="container relative z-10 py-20 md:py-32">
+      <div className="container relative z-10 py-8 pt-16 md:py-32">
         <div className="max-w-2xl">
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
