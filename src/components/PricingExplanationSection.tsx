@@ -1,7 +1,7 @@
 import { Sofa, Sparkles, Droplets, MapPin, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
+import { trackContact } from '@/lib/meta-pixel';
 const factors = [
   {
     icon: Sofa,
@@ -29,6 +29,7 @@ const WHATSAPP_URL = 'https://api.whatsapp.com/message/5SVXIYHUNM7LN1?autoload=1
 
 export function PricingExplanationSection() {
   const handleWhatsAppClick = () => {
+    trackContact();
     window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
   };
 
