@@ -1,5 +1,6 @@
 import { Armchair, Sofa, BedDouble, Square, LayoutGrid, Minus, Plus, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackContact } from '@/lib/meta-pixel';
 
 import { useSelectedServices } from '@/contexts/SelectedServicesContext';
 import ecksofaGrossIcon from '@/assets/ecksofa-gross-icon.svg';
@@ -7,6 +8,8 @@ import sofa3SitzerIcon from '@/assets/sofa-3-sitzer-icon.svg';
 import autositzIcon from '@/assets/autositz-icon.svg';
 import kuechenstuhlIcon from '@/assets/kuechenstuhl-icon.svg';
 import buerostuhlIcon from '@/assets/buerostuhl-icon.svg';
+
+const WHATSAPP_URL = 'https://api.whatsapp.com/message/5SVXIYHUNM7LN1?autoload=1&app_absent=0';
 
 // Sofa 3-Sitzer icon - using imported SVG
 const Sofa3SitzerIcon = ({ className }: { className?: string; strokeWidth?: number }) => (
@@ -183,11 +186,16 @@ export function PricingSection() {
 
           {/* CTA Button */}
           <div className="flex justify-center mt-10">
-            <Button variant="cta" size="xl" asChild>
-              <a href="#kontakt">
-                Kostenlose Preisanfrage
-                <ArrowRight className="w-5 h-5" />
-              </a>
+            <Button 
+              variant="cta" 
+              size="xl"
+              onClick={() => {
+                trackContact();
+                window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
+              }}
+            >
+              Kostenlose Preisanfrage
+              <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
         </div>
