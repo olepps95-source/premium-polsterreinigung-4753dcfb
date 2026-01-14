@@ -16,7 +16,7 @@ const gallery = [
   {
     image: beforeAfter3,
     caption: 'Sessel Auffrischung',
-    description: 'Tierhaare und Verschmutzungen beseitigt',
+    description: 'Intensive Reinigung eines hellen Sessels – Entfernung von tiefem Schmutz und Staub für ein frisches, sauberes Erscheinungsbild.',
   },
 ];
 
