@@ -6,7 +6,7 @@ const gallery = [
   {
     image: beforeAfter1,
     caption: 'Sofa Tiefenreinigung',
-    description: 'Hartnäckige Flecken vollständig entfernt',
+    description: 'Geruchsneutralisierung, gründliche Entfernung von Tierhaaren, Beseitigung von Farbflecken sowie eine intensive Tiefenreinigung mit Frischeeffekt für Ihr Sofa.',
   },
   {
     image: beforeAfter2,
