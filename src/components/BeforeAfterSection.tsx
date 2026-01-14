@@ -11,7 +11,7 @@ const gallery = [
   {
     image: beforeAfter2,
     caption: 'Matratzenreinigung',
-    description: 'Hygienisch rein für besseren Schlaf',
+    description: 'Entfernung von gelben Verfärbungen sowie eine umfassende hygienische Tiefenreinigung der Matratze für spürbare Frische und Sauberkeit.',
   },
   {
     image: beforeAfter3,
