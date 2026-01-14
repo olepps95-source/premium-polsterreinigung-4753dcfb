@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 export function Footer() {
   return (
     <footer className="bg-secondary/80 border-t border-border">
-      <div className="container py-16">
-        <div className="grid md:grid-cols-4 gap-10">
+      <div className="container py-10">
+        <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
             <a href="#" className="text-2xl font-bold text-foreground">
@@ -71,7 +71,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container py-6">
+        <div className="container py-4">
           <p className="text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} ReinWerk. Alle Rechte vorbehalten.
           </p>
