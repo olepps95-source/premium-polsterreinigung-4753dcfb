@@ -39,19 +39,14 @@ export function BeforeAfterSection() {
           {gallery.map((item) => (
             <div
               key={item.caption}
-              className="group relative rounded-2xl overflow-hidden shadow-soft hover:shadow-medium transition-shadow duration-300"
+              className="relative rounded-2xl overflow-hidden shadow-soft"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.caption}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover"
                 />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-lg font-semibold mb-1">{item.caption}</h3>
-                <p className="text-sm opacity-90">{item.description}</p>
               </div>
               <div className="p-4 bg-card">
                 <h3 className="font-semibold text-foreground">{item.caption}</h3>
